@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Luke Folders/_Scenes/lvl_mainmenu_test.unity
+    guid: 0969ae9d4d43b0448bed5a9fed788d22
+  - enabled: 1
+    path: Assets/Luke Folders/_Scenes/lvl_test1.unity
+    guid: 39975cdd27b2918458cf502c5debae55
+  - enabled: 1
+    path: Assets/Luke Folders/_Scenes/lvl_test2.unity
+    guid: 320f8ec189d4dda41bc76feb285d439a
+  - enabled: 1
+    path: Assets/Luke Folders/_Scenes/lvl_test3.unity
+    guid: 1c4a9d36cb6c3804699e61ddfe8e5aa5
+  - enabled: 1
     path: Assets/lvl_test_all.unity
     guid: 2ad3fa99890a80948880a937bcdb4a3c
   m_configObjects: {}
