@@ -11,15 +11,18 @@ public class Collectables : MonoBehaviour {
     public float RotationZ;
     public float FloatingSpeed; // how fast the collectable can bounce up and down
     public float SinAmplitude; // determines how high/low the collectable can go 
+    private float t;
 
     Vector3 Rotation;
     Vector3 OriginalYpos;
     Vector3 SinYPos;
 
+
     // Use this for initialization
     void Start ()
     {
         SetFloating();
+
     }
 	
 	// Update is called once per frame
@@ -46,7 +49,6 @@ public class Collectables : MonoBehaviour {
     {
         transform.Rotate(Rotation * Time.deltaTime * RotationSpeed);
     }
-
 
     void OnTriggerEnter(Collider other)
     {
