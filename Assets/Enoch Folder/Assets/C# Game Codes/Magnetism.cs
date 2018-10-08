@@ -4,47 +4,50 @@ using UnityEngine;
 
 public class Magnetism : MonoBehaviour {
 
-    public Collectables CollectablesCode;
-    public Transform Player;
-    public float Speed;
-    public float Distance;
-    private Vector3 velocity = Vector3.zero;
+    public GameObject player;
+    public float distance;
 
-    // Use this for initialization
-    void Start ()
+    [SerializeField]
+    private float speedMultiplier;
+
+    bool isFollowing = false;
+
+    // Update is called once per frame
+    void Update()
     {
-        //ThisTransform = transform.position;
-        ///Collectable = transform; // attach the collectable gameobject to this transform.
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        MoveToPlayer();
+        // Get the distance between the collectables position and the players position
+        distance = Vector3.Distance(transform.position, player.transform.position);
 
-        //ThisTransform = Vector3.Lerp(ThisTransform, Player.position, Speed);
-        //if(Mathf.Abs(Player.position.x - ThisTransform.x) < 0.05)
-        //{
-        //   Player.position = ThisTransform;
-        //}
 
-        //transform.position = Vector3.Lerp(transform.position, Player.position, Speed);
+        // if the collectable is following is true...
+        // Then call the function that moves the collectable to the player.
+        // Else do nothing...
+        if (isFollowing)
+        {
+            MoveToPlayer();
+        }
+
+        // If the distance between the player is less than 10 units
+        // Then is following is true
+        // And the 'MoveToPlayer' function is called under this condition.
+        // It gives space to create the magnet effect to follow the player around and destroy itself on contact
+        if (distance < 10)
+        {
+            isFollowing = true;
+        }
+
     }
 
     void MoveToPlayer()
     {
-        Distance = Vector3.Distance(transform.position, Player.transform.position);
-        if (Distance < 5)
-        {
-            CollectablesCode.RotationSpeed = 0;
-            CollectablesCode.SinAmplitude = 0;
-            Debug.Log("Player is near the collectable");
-            //transform.position = Vector3.Lerp(transform.position, Player.position, Speed);
-
-            Vector3 RandomPosition = new Vector3(Random.Range(-5.0f, 5.0f), 0, Random.Range(0, 5.0f));
-            //transform.position = Vector3.Slerp(transform.position + RandomPosition, Player.position, Speed * Time.smoothDeltaTime);
-            transform.position = Vector3.SmoothDamp(transform.position, Player.position, ref velocity, Speed);
-            //CancelInvoke("")
-        }
+        // Moves object to player (with a nice slowdown effect)
+        // Get how far you are off from the player's position and 'this' collectables position
+        // Normalize this vector to only get a magnitude between 0 and 1 when the player is moving towards the collectable
+        // Move to the player via transform.translate. 'toPlayer' times by the speed mulitiplier will give the collectable some speed to follow the player
+        // Dividing this means that when the collectable is near the player it will move faster the closer the player is and vice versa
+        Vector3 toPlayer = player.transform.position - transform.position;
+        toPlayer.Normalize();
+        transform.Translate(toPlayer * speedMultiplier / distance);
+        Debug.Log("Player is near the collectable");
     }
 }
