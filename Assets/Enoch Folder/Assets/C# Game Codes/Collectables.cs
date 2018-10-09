@@ -6,7 +6,6 @@ public class Collectables : MonoBehaviour {
 
     public GameObject player;
 
-    
     void OnTriggerEnter(Collider other)
     {
         // Destroy the collectable if the player has contact with it
