@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collectables : MonoBehaviour {
 
     public GameObject player;
+    public GameObject hitParticle;
 
     void OnTriggerEnter(Collider other)
     {
@@ -13,6 +14,7 @@ public class Collectables : MonoBehaviour {
         {
             Debug.Log("Cube Absorbed");
             Destroy(this.gameObject);
+            Instantiate(hitParticle, transform.position, transform.rotation);
         }
     }
 }

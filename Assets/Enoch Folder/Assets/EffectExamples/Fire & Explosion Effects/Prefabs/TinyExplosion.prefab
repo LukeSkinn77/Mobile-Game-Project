@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4441266138185142}
   - component: {fileID: 198175801688348628}
   - component: {fileID: 199922078765427110}
+  - component: {fileID: 114180048701469882}
   m_Layer: 0
   m_Name: TinyExplosion
   m_TagString: Untagged
@@ -103,6 +104,17 @@ Transform:
   m_Father: {fileID: 4441266138185142}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114180048701469882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1337198075554910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79203b644a75664a8531fcca1b6ca30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198175801688348628
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -113,8 +125,8 @@ ParticleSystem:
   lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
-  looping: 1
-  prewarm: 1
+  looping: 0
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1

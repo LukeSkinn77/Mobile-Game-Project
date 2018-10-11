@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class ParticlesCollision : MonoBehaviour
 {
-    private void OnParticleCollision(GameObject other)
+    //public GameObject player;
+    //public GameObject hitParticle;
+
+     // This has to be attached to the particle we want to use...
+
+    private void Awake()
     {
-        Debug.Log("Hit!");
+        Invoke("Destruct", 2.0f);
+    }
+
+    void Destruct()
+    {
+        Debug.Log("Destroyed Particles");
+        gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 }
