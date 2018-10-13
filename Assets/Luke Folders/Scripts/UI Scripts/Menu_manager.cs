@@ -45,7 +45,7 @@ public class Menu_manager : MonoBehaviour {
 	public void BonusStage()
 	{
 		//SceneManager.LoadScene("lvl_test1");
-		StartCoroutine(LoadScene("lvl_test1"));
+		StartCoroutine(LoadScene("lvl_test3"));
 	}
 
 	public void ExitGame()

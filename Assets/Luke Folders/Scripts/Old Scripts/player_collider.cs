@@ -17,11 +17,6 @@ public class player_collider : MonoBehaviour {
 		//rb = GetComponent<Rigidbody> ();
 		normalcolour = rend.material.color;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	void OnTriggerEnter(Collider other)
 	{

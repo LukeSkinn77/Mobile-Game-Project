@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player_ground_control_mark2 : MonoBehaviour {
 
-	//Vector3 rayheight = new Vector3(0.0f, 0.1f, 0.0f);
 	public bool ground;
+	public bool doublejump;
 
 	Quaternion roation;
 
@@ -25,6 +25,7 @@ public class Player_ground_control_mark2 : MonoBehaviour {
 			if (rhit.transform.gameObject.tag == "Terrain")
 			{
 				ground = true;
+				doublejump = false;
 			}
 		}
 		else
