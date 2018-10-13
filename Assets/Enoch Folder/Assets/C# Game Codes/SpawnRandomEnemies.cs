@@ -54,6 +54,7 @@ public class SpawnRandomEnemies : MonoBehaviour {
             RandomHolder = Random.Range(0, SpawnEnemies.Length); 
             var Enemy = Instantiate(SpawnEnemies[RandomHolder], SpawnPoint.position + RandomPosition, SpawnPoint.rotation);
             Enemy.GetComponent<Rigidbody>().AddForce((transform.forward * -EnemySpeedFactor));
+            Destroy(Enemy, 5);
     }
 
 }
