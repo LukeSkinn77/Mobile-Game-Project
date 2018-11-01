@@ -6,8 +6,9 @@ public class fpslimiter : MonoBehaviour {
 
 	public int fpslimit = 30;
 
-	void Awake () 
+	void Start () 
 	{
+		fpslimit = Game_Manager.Instance.frameRate;
 		//Sets the framerate to the variable
 		QualitySettings.vSyncCount = 0;
 		Application.targetFrameRate = fpslimit;

@@ -295,7 +295,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 501512443}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc0e3b297be61294ea3d75316360e3d0, type: 3}
+  m_Script: {fileID: 11500000, guid: f11d64cc4466645498d65f0c54ce2b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Hitzone: {fileID: 1832905872}
@@ -377,9 +377,9 @@ GameObject:
   - component: {fileID: 658562042}
   - component: {fileID: 658562041}
   - component: {fileID: 658562040}
-  - component: {fileID: 658562045}
+  - component: {fileID: 658562047}
   - component: {fileID: 658562046}
-  - component: {fileID: 658562048}
+  - component: {fileID: 658562045}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -478,16 +478,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 658562039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be4a8aaf48878f541bf0b8f653009ce8, type: 3}
+  m_Script: {fileID: 11500000, guid: a89d464b702e40a4ca6cc6e7863e5b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movetol: 80
-  timernum: 0.1
-  jumpforce: 7
-  drag: 0
-  movingleft: 0
-  movingright: 0
-  pgc: {fileID: 658562046}
+  ground: 0
 --- !u!114 &658562046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,11 +490,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 658562039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ebdb9f467c849a4da938f5bf76a2b8a, type: 3}
+  m_Script: {fileID: 11500000, guid: 85bd550bb85281945b2a623bce119c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ground: 0
---- !u!114 &658562048
+  damagecolour: {r: 0.7372549, g: 0, b: 0, a: 0}
+  normalcolour: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &658562047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -508,11 +503,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 658562039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c927a2da5ae814dbf024c4748a5d27, type: 3}
+  m_Script: {fileID: 11500000, guid: 2770dbb69eb6e114cb643abb8306b83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagecolour: {r: 0.735849, g: 0, b: 0, a: 0}
-  normalcolour: {r: 0, g: 0, b: 0, a: 0}
+  movetol: 80
+  timernum: 0.1
+  jumpforce: 7
+  drag: 0
+  movingleft: 0
+  movingright: 0
+  pgc: {fileID: 658562045}
 --- !u!1 &938801760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1574758434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 103ea5a2c12c5c54fad9e31118a09ba6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4415e68dd63533c42975a7d3d9943e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 658562039}

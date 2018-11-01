@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret_control : MonoBehaviour {
+public class Turret_Area_Control : MonoBehaviour {
 
 	public GameObject firingpoint;
+	public GameObject Cnball;
 
 	public Transform playerobj;
 
@@ -16,6 +17,9 @@ public class Turret_control : MonoBehaviour {
 	public float firerate;
 	private float firetime;
 
+	float angle = 45.0f;
+
+
 	LineRenderer lineren;
 
 	// Use this for initialization
@@ -23,8 +27,7 @@ public class Turret_control : MonoBehaviour {
 	{
 		lineren = firingpoint.GetComponent<LineRenderer> ();
 	}
-
-	// Update is called once per frame
+	
 	void FixedUpdate () 
 	{
 		//Sets up a raycast
@@ -41,11 +44,6 @@ public class Turret_control : MonoBehaviour {
 			if (Physics.Raycast (ray1, out rayhit, raylgh)) 
 			{
 				lineren.SetPosition (1, rayhit.point);
-				//Checks for collision with player, if so, turret ai state set to 2
-				if (rayhit.transform.gameObject.tag == "Player") 
-				{
-					turretaistate = 2;
-				}
 			}
 			break;
 		case 2:
@@ -64,6 +62,7 @@ public class Turret_control : MonoBehaviour {
 
 			if (Time.time > firetime) 
 			{
+				Fire ();
 				firetime = Time.time + firerate;
 			}
 			break;
@@ -74,5 +73,31 @@ public class Turret_control : MonoBehaviour {
 	{
 		Vector3 currenteuler = lineren.transform.eulerAngles;
 		lineren.transform.rotation = Quaternion.Euler (0, currenteuler.y, 0);
+	}
+		
+	void Fire()
+	{
+		var obj = Instantiate (Cnball, firingpoint.transform.position, firingpoint.transform.rotation);
+
+		float aim = Vector3.Distance (firingpoint.transform.position, playerobj.position);
+
+		float tempval1 = Mathf.Sqrt(aim * -Physics.gravity.y / (Mathf.Sin(Mathf.Deg2Rad * angle * 2)));
+		float velocy, velocz;
+
+		velocy = tempval1 * Mathf.Sin (Mathf.Deg2Rad * angle);
+		velocz = tempval1 * Mathf.Cos (Mathf.Deg2Rad * angle);
+
+		Vector3 lv = new Vector3 (0.0f, velocy, velocz);
+
+		Vector3 gv = transform.TransformVector (lv);
+
+		obj.GetComponent<Rigidbody> ().velocity = gv;
+
+		//float squaredGravity = Physics.gravity.sqrMagnitude;
+		//float targetDot = 5.0f * 5.0f + Vector3.Dot (playerobj.position, Physics.gravity);
+
+
+		//obj.GetComponent<Rigidbody> ().velocity = aim;
+
 	}
 }

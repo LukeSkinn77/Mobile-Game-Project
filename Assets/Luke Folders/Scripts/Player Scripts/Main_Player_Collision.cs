@@ -21,6 +21,7 @@ public class Main_Player_Collision : MonoBehaviour {
 		ph = GetComponent<Main_Player_Score_Manager> ();
 		rend = model.GetComponent<Renderer> ();
 		normalColour = rend.material.color;
+		Level_ui_manager.Current.ScoreSliderValue (200, ph.score, pl.playerpowerupstate_temp);
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -40,7 +41,7 @@ public class Main_Player_Collision : MonoBehaviour {
 		if (other.tag == "Collectable") 
 		{
 			//Increases player score, disables collectable and checks score
-			ph.PlayerScoreInc (100);
+			ph.PlayerScoreInc (50);
 			other.gameObject.SetActive (false);
 			ScoreCheck ();
 		}
@@ -64,8 +65,12 @@ public class Main_Player_Collision : MonoBehaviour {
 			if (pl.playerpowerupstate != 0) 
 			{
 				pl.LevelOneModifier ();
-				pl.playerpowerupstate = 0;
+				if (pl.playerpowerupstate < 3)
+				{
+					pl.playerpowerupstate = 0;
+				}				
 				pl.playerpowerupstate_temp = 0;
+				Level_ui_manager.Current.ScoreSliderValue (200, ph.score, pl.playerpowerupstate_temp);
 				normalColour = rend.material.color;
 			}
 		} 
@@ -74,8 +79,12 @@ public class Main_Player_Collision : MonoBehaviour {
 			if (pl.playerpowerupstate != 1) 
 			{
 				pl.LevelTwoModifier ();
-				pl.playerpowerupstate = 1;
+				if (pl.playerpowerupstate < 3)
+				{
+					pl.playerpowerupstate = 1;
+				}
 				pl.playerpowerupstate_temp = 1;
+				Level_ui_manager.Current.ScoreSliderValue (300, ph.score, pl.playerpowerupstate_temp);
 				normalColour = rend.material.color;
 			}
 		} 
@@ -84,8 +93,12 @@ public class Main_Player_Collision : MonoBehaviour {
 			if (pl.playerpowerupstate != 2) 
 			{
 				pl.LevelThreeModifier ();
-				pl.playerpowerupstate = 2;
+				if (pl.playerpowerupstate < 3)
+				{
+					pl.playerpowerupstate = 2;
+				}				
 				pl.playerpowerupstate_temp = 2;
+				Level_ui_manager.Current.ScoreSliderValue (300, ph.score, pl.playerpowerupstate_temp);
 				normalColour = rend.material.color;
 			}
 		}

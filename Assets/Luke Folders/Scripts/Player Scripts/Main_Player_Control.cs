@@ -5,6 +5,7 @@ using UnityEngine;
 public class Main_Player_Control : MonoBehaviour {
 
 	public Rigidbody rb;
+	AudioSource audi;
 	Main_Player_Score_Manager ph;
 
 	public int movetol = 140;
@@ -27,6 +28,8 @@ public class Main_Player_Control : MonoBehaviour {
 	private Vector2 starttouch;
 	private Vector2 endtouch;
 
+	private Vector3 initialDirection;
+
 	public Main_Player_Ground_Checker pgc;
 	public Main_Player_Camera_Control cam;
 	public Transform model;
@@ -35,16 +38,28 @@ public class Main_Player_Control : MonoBehaviour {
 	public Material mat_leveltwo;
 	public Material mat_levelthree;
 
+	public GameObject explo;
+
+	public AudioClip audioJump;
+
 	// Use this for initialization
 	void Start () 
 	{
+		initialDirection = new Vector3 (Input.acceleration.x, 0.0f, Input.acceleration.z);
+		Game_Manager.Instance.SavePlayer ();
 		//Gets components
 		rb = GetComponent<Rigidbody> ();
 		ph = GetComponent<Main_Player_Score_Manager> ();
+		audi = GetComponent<AudioSource> ();
 	}
 
 	// Update is called once per frame
 	void Update () 
+	{
+		TouchControls ();
+	}
+
+	void TouchControls()
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -103,23 +118,22 @@ public class Main_Player_Control : MonoBehaviour {
 				drag = false;
 			}
 		}
-
 	}
 
 	void FixedUpdate()
 	{
-		//Sets accelerometer values
-		Vector3 rotatvalue = new Vector3 (-Input.acceleration.z * speed* Time.timeScale, 0, Input.acceleration.x * speed* Time.timeScale);
-		Vector3 tiltval = new Vector3 (Input.acceleration.x * speed * Time.deltaTime * Time.timeScale, 0, -Input.acceleration.z * speed * Time.deltaTime * Time.timeScale);
+		PlayerMovement ();
+		KeyBoardMovement ();
+		GlideCheck ();
 
-		PlayerSpace = Space.Self;
+		if (playerpowerupstate == 5) 
+		{
+			Time.timeScale = 0.5f;
+		}
+	}
 
-		//Rotates player model
-		model.Rotate (rotatvalue, PlayerSpace);
-
-		//Translates based on accelerometer
-		transform.Translate (tiltval, Space.Self);
-
+	void KeyBoardMovement()
+	{
 		//Debug Keyboard Commands REMOVE WHEN FINAL BUILD
 		if (Input.GetKey (KeyCode.A)) 
 		{
@@ -137,10 +151,38 @@ public class Main_Player_Control : MonoBehaviour {
 		{
 			transform.Translate (new Vector3(0,0,-10) * Time.deltaTime, Space.Self);
 		}
-		if (playerpowerupstate == 5) 
+	}
+
+	void PlayerMovement()
+	{
+		Vector3 direction = Vector3.zero;
+
+		direction.x = Input.acceleration.x;
+		if ((Input.deviceOrientation == DeviceOrientation.LandscapeLeft) || (Input.deviceOrientation == DeviceOrientation.LandscapeRight)) 
 		{
-			Time.timeScale = 0.5f;
+			direction.z = Input.acceleration.z;
+		} 
+		else 
+		{
+			direction.z = -Input.acceleration.y;
 		}
+
+		if (direction.magnitude > 2) 
+		{
+			direction.Normalize ();
+		}
+
+		//Sets accelerometer values
+		Vector3 rotatvalue = new Vector3 (-direction.z * speed * Time.timeScale, 0, direction.x * speed* Time.timeScale);
+		Vector3 tiltval = new Vector3 (direction.x * Time.deltaTime, 0, -direction.z * Time.deltaTime);
+
+		PlayerSpace = Space.Self;
+
+		//Rotates player model
+		model.Rotate (rotatvalue, PlayerSpace);
+
+		//Translates based on accelerometer
+		transform.Translate (tiltval * speed, Space.Self);
 	}
 
 	void TapAction()
@@ -156,10 +198,13 @@ public class Main_Player_Control : MonoBehaviour {
 			} 
 			if (!pgc.ground && !pgc.doubleJump) 
 			{
+				audi.clip = audioJump;
+				audi.Play ();
 				rb.velocity = new Vector3 (rb.velocity.x, 0, rb.velocity.z);
 				rb.AddForce (new Vector3 (0.0f, jumpforce, 0.0f), ForceMode.Impulse);
 				pgc.doubleJump = true;
 				ph.PlayerPowerUpDrain (20);
+				Instantiate (explo, transform.position, transform.rotation);
 				if (ph.powerupBar <= 0) 
 				{
 					playerpowerupstate = playerpowerupstate_temp;
@@ -176,7 +221,7 @@ public class Main_Player_Control : MonoBehaviour {
 			if (!pgc.ground && !pgc.glideJump) 
 			{
 				rb.velocity = new Vector3 (rb.velocity.x, 0, rb.velocity.z);
-				Physics.gravity = new Vector3 (0.0f, -6.0f, 0.0f);
+				//Physics.gravity = new Vector3 (0.0f, -6.0f, 0.0f);
 				pgc.glideJump = true;
 				ph.PlayerPowerUpDrain (20);
 				if (ph.powerupBar <= 0) 
@@ -193,6 +238,15 @@ public class Main_Player_Control : MonoBehaviour {
 				rb.AddForce (new Vector3 (0.0f, jumpforce, 0.0f), ForceMode.Impulse);
 			}
 			break;
+		}
+	}
+
+	void GlideCheck()
+	{
+		//Checks that the player is gliding, then adds a force upwards
+		if (pgc.glideJump) 
+		{
+			rb.AddForce(-Physics.gravity/11.0f);
 		}
 	}
 

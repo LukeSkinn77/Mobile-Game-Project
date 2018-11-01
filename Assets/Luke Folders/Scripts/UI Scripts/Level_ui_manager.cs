@@ -12,9 +12,13 @@ public class Level_ui_manager : MonoBehaviour {
 	GameObject[] loadObjects;
 
 	Slider powerupSlider;
+	Slider scoreSlider;
 
 	Text powerupTxt;
 	Text healthTxt;
+	Text levelTxt;
+
+	//float scoreSlidervalue = 0;
 
 	// Use this for initialization
 	void Awake () 
@@ -23,7 +27,7 @@ public class Level_ui_manager : MonoBehaviour {
 		Initiat ();
 		MenuObjectsOff ();
 	}
-
+		
 	void Initiat()
 	{
 		//Fills lists with gameobjects withs said tags, finds gameobject references
@@ -31,11 +35,13 @@ public class Level_ui_manager : MonoBehaviour {
 		menuObjects = GameObject.FindGameObjectsWithTag ("ShowOnMenu");
 		loadObjects = GameObject.FindGameObjectsWithTag ("LoadScreen");
 		powerupSlider = GameObject.Find ("Powerup Slider").GetComponent<Slider>();
+		scoreSlider = GameObject.Find ("Health Slider").GetComponent<Slider>();
 		powerupTxt = GameObject.Find ("Double Jump Text").GetComponent<Text> ();
 		healthTxt = GameObject.Find ("Health Text").GetComponent<Text> ();
+		levelTxt = GameObject.Find ("Player Level Text").GetComponent<Text> ();
 		powerupTxt.gameObject.SetActive (false);
 		powerupSlider.gameObject.SetActive (false);
-		ScoreUpdate (100);
+		ScoreUpdate (0);
 	}
 
 	public void MenuObjectsOn()
@@ -69,10 +75,10 @@ public class Level_ui_manager : MonoBehaviour {
 	public void MenuLoad()
 	{
 		//Starts load procedure
-		StartCoroutine(LoadScene ("lvl_mainmenu_test"));
+		StartCoroutine(LoadScene ("lvl_mainmenu"));
 	}
 
-	IEnumerator LoadScene(string lvl)
+	public IEnumerator LoadScene(string lvl)
 	{
 		//Turns on loading gameobjects in list
 		foreach (GameObject loadobject in loadObjects) 
@@ -92,6 +98,7 @@ public class Level_ui_manager : MonoBehaviour {
 	{
 		//Updates score ui
 		healthTxt.text = "Score: " + score;
+		scoreSlider.value = score;
 	}
 
 	public void PowerupUpdate(float powerupbar)
@@ -106,18 +113,6 @@ public class Level_ui_manager : MonoBehaviour {
 		//On player state
 		switch (state) 
 		{
-//		case 0:
-//			Doublejumptxt.gameObject.SetActive (false);
-//			powerupslider.gameObject.SetActive (false);
-//			break;
-//		case 1:
-//			Doublejumptxt.gameObject.SetActive (false);
-//			powerupslider.gameObject.SetActive (false);
-//			break;
-//		case 2:
-//			Doublejumptxt.gameObject.SetActive (false);
-//			powerupslider.gameObject.SetActive (false);
-//			break;
 		case 3:
 			powerupTxt.gameObject.SetActive (true);
 			powerupTxt.text = "Double Jump";
@@ -138,5 +133,17 @@ public class Level_ui_manager : MonoBehaviour {
 			powerupSlider.gameObject.SetActive (false);
 			break;
 		}
+	}
+
+	public void ScoreSliderValue(int maxvalueinp, int score, int playerstate)
+	{
+		//Sets the score slider to the score
+		scoreSlider.value = score;
+
+		//Increases slider max value
+		scoreSlider.maxValue = maxvalueinp;
+
+		//Show player level
+		levelTxt.text = "" + playerstate;
 	}
 }

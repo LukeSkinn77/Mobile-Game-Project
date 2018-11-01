@@ -214,3 +214,12 @@ public class player_control_mark2 : MonoBehaviour {
 		jumpforce = 1.0f;
 	}
 }
+//Sets the score slider to the score
+//if (scoreSlider.value > maxvalueinp) 
+//{
+//	//scoreSlider.value = 0;
+//} 
+//else 
+//{
+//	scoreSlider.value = score;
+//}

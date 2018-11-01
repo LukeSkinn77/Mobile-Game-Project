@@ -30,10 +30,10 @@ public class Main_Player_Ground_Checker : MonoBehaviour {
 				ground = true;
 				doubleJump = false;
 				glideJump = false;
-				if (Physics.gravity != new Vector3 (0.0f, -9.81f, 0.0f)) 
-				{
-					Physics.gravity = new Vector3 (0.0f, -9.81f, 0.0f);
-				}
+//				if (Physics.gravity != new Vector3 (0.0f, -9.81f, 0.0f)) 
+//				{
+//					Physics.gravity = new Vector3 (0.0f, -9.81f, 0.0f);
+//				}
 			}
 		}
 		else
