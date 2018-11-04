@@ -40,6 +40,7 @@ public class Menu_manager : MonoBehaviour {
 		volumesl.value = AudioListener.volume;
 	}
 
+	//Disables all UI objects but the one selected
 	public void MenuObjectsOn()
 	{
 		foreach (GameObject levelobject in lvlslctobjects) 
@@ -62,6 +63,7 @@ public class Menu_manager : MonoBehaviour {
 		cn.centrePosition = 4;
 	}
 
+	//Disables all UI objects but the one selected
 	public void OptionObjectsOn()
 	{
 		foreach (GameObject levelobject in lvlslctobjects) 
@@ -84,6 +86,7 @@ public class Menu_manager : MonoBehaviour {
 		cn.centrePosition = 2;
 	}
 
+	//Disables all UI objects but the one selected
 	public void LevelObjectsOn()
 	{
 		foreach (GameObject optionobject in optionobjects) 
@@ -108,13 +111,13 @@ public class Menu_manager : MonoBehaviour {
 
 	public void StartGame()
 	{
-		//SceneManager.LoadScene("lvl_test2");
+		//Starts asynchronous loading of scene
 		StartCoroutine(LoadScene("lvl_test3"));
 	}
 
 	public void BonusStage()
 	{
-		//SceneManager.LoadScene("lvl_test1");
+		//Starts asynchronous loading of scene
 		StartCoroutine(LoadScene("lvl_test2"));
 	}
 
@@ -125,11 +128,13 @@ public class Menu_manager : MonoBehaviour {
 
 	public IEnumerator LoadScene(string lvl)
 	{
+		//Shows loading screen
 		foreach (GameObject loadobject in loadobjects) 
 		{
 			loadobject.SetActive (true);
 		}
 
+		//Starts loading scene
 		AsyncOperation asyn = SceneManager.LoadSceneAsync (lvl);
 
 		while (!asyn.isDone) 
@@ -140,16 +145,19 @@ public class Menu_manager : MonoBehaviour {
 
 	public void AdjustVolume(Slider slider)
 	{
+		//Takes slider value and applies it to volume
 		AudioListener.volume = slider.value;
 	}
 
 	public void OptionSaveTrigger()
 	{
+		//Saves option data
 		gm.SaveOptions ();
 	}
 
 	public void Continue()
 	{
+		//Loads player level data
 		gm.LoadPlayer ();
 	}
 

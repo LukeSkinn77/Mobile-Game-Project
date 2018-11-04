@@ -45,7 +45,7 @@ public class Main_Player_Control : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		initialDirection = new Vector3 (Input.acceleration.x, 0.0f, Input.acceleration.z);
+		initialDirection = Input.acceleration; //new Vector3 (Input.acceleration.x, 0.0f, Input.acceleration.z);
 		Game_Manager.Instance.SavePlayer ();
 		//Gets components
 		rb = GetComponent<Rigidbody> ();
@@ -167,7 +167,9 @@ public class Main_Player_Control : MonoBehaviour {
 			direction.z = -Input.acceleration.y;
 		}
 
-		if (direction.magnitude > 2) 
+
+
+		if (direction.magnitude > 1) 
 		{
 			direction.Normalize ();
 		}

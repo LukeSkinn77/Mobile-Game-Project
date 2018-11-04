@@ -6,7 +6,6 @@ public class Base_Turret_Collision : MonoBehaviour {
 
 	public Base_Turret_Script turretcon;
 
-	// Use this for initialization
 	void Start () 
 	{
 		turretcon = gameObject.GetComponentInParent<Base_Turret_Script> ();

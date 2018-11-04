@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Base_Turret_Script : MonoBehaviour {
+public abstract class Base_Turret_Script : MonoBehaviour {
 
 	public GameObject firingpoint;
 	public GameObject Cnball;
@@ -19,7 +19,6 @@ public class Base_Turret_Script : MonoBehaviour {
 
 	public LineRenderer lineren;
 
-	// Use this for initialization
 	void Start () 
 	{
 		playerobj = GameObject.Find ("Player").GetComponent<Transform> ();
@@ -28,12 +27,10 @@ public class Base_Turret_Script : MonoBehaviour {
 
 	public void RotateToDefault()
 	{
+		//Resets Y rotation
 		Vector3 currenteuler = lineren.transform.eulerAngles;
 		lineren.transform.rotation = Quaternion.Euler (0, currenteuler.y, 0);
 	}
 
-	public virtual void Fire()
-	{
-		
-	}
+	public abstract void Fire ();
 }

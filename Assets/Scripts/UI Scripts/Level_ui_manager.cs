@@ -18,6 +18,11 @@ public class Level_ui_manager : MonoBehaviour {
 	Text healthTxt;
 	Text levelTxt;
 
+//	public Text debugtxt1;
+//	public Text debugtxt2;
+//	public Text debugtxt3;
+//	public Main_Player_Control debugplayer;
+
 	//float scoreSlidervalue = 0;
 
 	// Use this for initialization
@@ -27,6 +32,13 @@ public class Level_ui_manager : MonoBehaviour {
 		Initiat ();
 		MenuObjectsOff ();
 	}
+
+//	void Update()
+//	{
+//		debugtxt1.text = "init " + debugplayer.initialDirection;
+//		debugtxt2.text = "acc " + Input.acceleration;
+//		debugtxt3.text = "result " + debugplayer.direction;
+//	}
 		
 	void Initiat()
 	{
