@@ -10,9 +10,11 @@ public class Pickups_Particle_Pooling : MonoBehaviour {
 
     public GameObject pooledPickupParticle;
     public GameObject pooledDamageParticle;
+    public GameObject pooledCloudParticle;
 
     public List<GameObject> pooledPickupParticles;
     public List<GameObject> pooledDamageParticles;
+    public List<GameObject> pooledCloudParticles;
 
     // Destroy unloads object from the memory and set reference to null so in order to use it again you need to recreate it, via let's say instantiate. 
     //Meanwhile SetActive just hides the object and disables all components on it so if you need you can use it again.
@@ -30,6 +32,7 @@ public class Pickups_Particle_Pooling : MonoBehaviour {
     {
         SetupParticlePickup();
         SetupDamageParticle();
+        SetupCloudParticle();
     }
 
 
@@ -57,6 +60,19 @@ public class Pickups_Particle_Pooling : MonoBehaviour {
             GameObject damageParticle = Instantiate(pooledDamageParticle, transform.position, transform.rotation);
             damageParticle.SetActive(false);
             pooledDamageParticles.Add(damageParticle);
+        }
+
+    }
+
+    void SetupCloudParticle()
+    {
+        pooledCloudParticles = new List<GameObject>();
+
+        for (int y = 0; y < pooledAmount; y++)
+        {
+            GameObject cloudParticle = Instantiate(pooledCloudParticle, transform.position, transform.rotation);
+            cloudParticle.SetActive(false);
+            pooledCloudParticles.Add(cloudParticle);
         }
 
     }
@@ -110,6 +126,27 @@ public class Pickups_Particle_Pooling : MonoBehaviour {
             damageParticle.SetActive(false);
             pooledDamageParticles.Add(damageParticle);
             return damageParticle;
+        }
+
+        return null;
+    }
+
+    public GameObject GetCloudParticle()
+    {
+        for (int y = 0; y < pooledCloudParticles.Count; y++)
+        {
+            if (!pooledCloudParticles[y].activeInHierarchy)
+            {
+                return pooledCloudParticles[y];
+            }
+        }
+
+        if (expandPool)
+        {
+            GameObject cloudParticle = Instantiate(pooledCloudParticle, transform.position, transform.rotation);
+            cloudParticle.SetActive(false);
+            pooledCloudParticles.Add(cloudParticle);
+            return cloudParticle;
         }
 
         return null;
