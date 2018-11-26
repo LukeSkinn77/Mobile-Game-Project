@@ -94,26 +94,27 @@ public class Main_Player_Control : MonoBehaviour {
 
 			case TouchPhase.Ended:
 				Debug.Log (endtouch.x);
-				if (endtouch.y >= 50) 
+				if (endtouch.y >= 100) 
 				{
 					goingForward = true;
 					goingBackward = false;
 				} 
-				else if (endtouch.y <= -50) 
+				else if (endtouch.y <= -100) 
 				{
 					goingBackward = true;
 					goingForward = false;
 				}
 
+                if ((endtouch.y >= 50) || (endtouch.y <= -50))
+                {
+                    cam.RotateOverTime(endtouch.x / 10);
+                }
 
-				if ((endtouch.x <= 1) && (endtouch.x >= -1)) 
+                if ((endtouch.x <= 50) && (endtouch.x >= -50) && (endtouch.y <= 100) && (endtouch.y >= -100)) 
 				{
 					TapAction ();
 				} 
-				else 
-				{
-					cam.RotateOverTime (endtouch.x/10);
-				}
+
 				direcho = true;
 				endtouch = Vector2.zero;
 				break;
