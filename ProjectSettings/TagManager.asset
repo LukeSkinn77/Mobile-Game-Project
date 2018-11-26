@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Terrain
+  - ShowOnMenu
+  - LoadScreen
+  - Collectable
+  - PowerUp
+  - Enemy
+  - VicScreen
+  - GameOverScreen
   layers:
   - Default
   - TransparentFX

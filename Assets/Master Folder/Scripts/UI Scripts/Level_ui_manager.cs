@@ -10,8 +10,10 @@ public class Level_ui_manager : MonoBehaviour {
 
 	GameObject[] menuObjects;
 	GameObject[] loadObjects;
+    GameObject[] gmObjects;
+    GameObject[] vicObjects;
 
-	Slider powerupSlider;
+    Slider powerupSlider;
 	Slider scoreSlider;
 
 	Text powerupTxt;
@@ -46,7 +48,10 @@ public class Level_ui_manager : MonoBehaviour {
 		//And updates the score
 		menuObjects = GameObject.FindGameObjectsWithTag ("ShowOnMenu");
 		loadObjects = GameObject.FindGameObjectsWithTag ("LoadScreen");
-		powerupSlider = GameObject.Find ("Powerup Slider").GetComponent<Slider>();
+        gmObjects = GameObject.FindGameObjectsWithTag("GameOverScreen");
+        vicObjects = GameObject.FindGameObjectsWithTag("VicScreen");
+
+        powerupSlider = GameObject.Find ("Powerup Slider").GetComponent<Slider>();
 		scoreSlider = GameObject.Find ("Health Slider").GetComponent<Slider>();
 		powerupTxt = GameObject.Find ("Double Jump Text").GetComponent<Text> ();
 		healthTxt = GameObject.Find ("Health Text").GetComponent<Text> ();
@@ -58,8 +63,16 @@ public class Level_ui_manager : MonoBehaviour {
 
 	public void MenuObjectsOn()
 	{
-		//Turns on pause gameobjects in list, while disabling any other list
-		foreach (GameObject loadobject in loadObjects) 
+        //Turns on pause gameobjects in list, while disabling any other list
+        foreach (GameObject gmobject in gmObjects)
+        {
+            gmobject.SetActive(false);
+        }
+        foreach (GameObject vicobject in vicObjects)
+        {
+            vicobject.SetActive(false);
+        }
+        foreach (GameObject loadobject in loadObjects) 
 		{
 			loadobject.SetActive (false);
 		}
@@ -72,8 +85,16 @@ public class Level_ui_manager : MonoBehaviour {
 
 	public void MenuObjectsOff()
 	{
-		//Turns off pause gameobjects in list, while disabling any other list
-		foreach (GameObject loadobject in loadObjects) 
+        //Turns off pause gameobjects in list, while disabling any other list
+        foreach (GameObject gmobject in gmObjects)
+        {
+            gmobject.SetActive(false);
+        }
+        foreach (GameObject vicobject in vicObjects)
+        {
+            vicobject.SetActive(false);
+        }
+        foreach (GameObject loadobject in loadObjects) 
 		{
 			loadobject.SetActive (false);
 		}
@@ -84,7 +105,52 @@ public class Level_ui_manager : MonoBehaviour {
 		Time.timeScale = 1.0f;
 	}
 
-	public void MenuLoad()
+    public void VictoryScreenOn()
+    {
+        //Turns on pause gameobjects in list, while disabling any other list
+        foreach (GameObject gmobject in gmObjects)
+        {
+            gmobject.SetActive(false);
+        }
+        foreach (GameObject loadobject in loadObjects)
+        {
+            loadobject.SetActive(false);
+        }
+        foreach (GameObject menuobject in menuObjects)
+        {
+            menuobject.SetActive(false);
+        }
+        foreach (GameObject vicobject in vicObjects)
+        {
+            vicobject.SetActive(true);
+        }
+        Time.timeScale = 0.0f;
+    }
+
+    public void GameOverScreenOn()
+    {
+        //Turns on pause gameobjects in list, while disabling any other list
+
+        foreach (GameObject loadobject in loadObjects)
+        {
+            loadobject.SetActive(false);
+        }
+        foreach (GameObject menuobject in menuObjects)
+        {
+            menuobject.SetActive(false);
+        }
+        foreach (GameObject vicobject in vicObjects)
+        {
+            vicobject.SetActive(false);
+        }
+        foreach (GameObject gmobject in gmObjects)
+        {
+            gmobject.SetActive(true);
+        }
+        Time.timeScale = 0.0f;
+    }
+
+    public void MenuLoad()
 	{
 		//Starts load procedure
 		StartCoroutine(LoadScene ("lvl_mainmenu"));
@@ -105,6 +171,12 @@ public class Level_ui_manager : MonoBehaviour {
 			yield return null;
 		}
 	}
+
+    public void NextLevel()
+    {
+        string lvl = GameObject.Find("Victory Trigger").GetComponent<Level_Changer>().lvl;
+        StartCoroutine(LoadScene(lvl));
+    }
 
 	public void ScoreUpdate(float score)
 	{
