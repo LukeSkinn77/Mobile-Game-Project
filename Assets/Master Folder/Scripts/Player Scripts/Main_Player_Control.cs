@@ -105,9 +105,9 @@ public class Main_Player_Control : MonoBehaviour {
 					goingForward = false;
 				}
 
-                if ((endtouch.y >= 50) || (endtouch.y <= -50))
+                if ((endtouch.x >= 50) || (endtouch.x <= -50))
                 {
-                    cam.RotateOverTime(endtouch.x / 10);
+                    cam.RotateOverTime(endtouch.x / 20);
                 }
 
                 if ((endtouch.x <= 50) && (endtouch.x >= -50) && (endtouch.y <= 100) && (endtouch.y >= -100)) 
