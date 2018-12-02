@@ -20,6 +20,8 @@ public class Level_ui_manager : MonoBehaviour {
 	Text healthTxt;
 	Text levelTxt;
 
+    Image imageBlack;
+
 //	public Text debugtxt1;
 //	public Text debugtxt2;
 //	public Text debugtxt3;
@@ -51,6 +53,7 @@ public class Level_ui_manager : MonoBehaviour {
         gmObjects = GameObject.FindGameObjectsWithTag("GameOverScreen");
         vicObjects = GameObject.FindGameObjectsWithTag("VicScreen");
 
+        imageBlack = GameObject.Find("Black Image").GetComponent<Image>();
         powerupSlider = GameObject.Find ("Powerup Slider").GetComponent<Slider>();
 		scoreSlider = GameObject.Find ("Health Slider").GetComponent<Slider>();
 		powerupTxt = GameObject.Find ("Double Jump Text").GetComponent<Text> ();
@@ -58,6 +61,8 @@ public class Level_ui_manager : MonoBehaviour {
 		levelTxt = GameObject.Find ("Player Level Text").GetComponent<Text> ();
 		powerupTxt.gameObject.SetActive (false);
 		powerupSlider.gameObject.SetActive (false);
+
+        StartCoroutine(ImageFadeOut(1f, imageBlack));
 		ScoreUpdate (0);
 	}
 
@@ -230,4 +235,15 @@ public class Level_ui_manager : MonoBehaviour {
 		//Show player level
 		levelTxt.text = "" + playerstate;
 	}
+
+    IEnumerator ImageFadeOut(float fadeTimer, Image fadeImage)
+    {
+        fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1);
+        while (fadeImage.color.a > 0f)
+        {
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, fadeImage.color.a - (Time.deltaTime / fadeTimer));
+            yield return null;
+        }
+        fadeImage.gameObject.SetActive(false);
+    }
 }

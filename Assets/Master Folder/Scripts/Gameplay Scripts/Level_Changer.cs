@@ -13,7 +13,6 @@ public class Level_Changer : MonoBehaviour {
 		if (other.tag == "Player") 
 		{
             Level_ui_manager.Current.VictoryScreenOn();
-			//StartCoroutine(Level_ui_manager.Current.LoadScene(lvl));
 		}
 	}
 }

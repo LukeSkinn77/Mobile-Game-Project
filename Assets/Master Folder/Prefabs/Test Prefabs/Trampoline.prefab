@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4851142158724258}
   - component: {fileID: 33956137444804638}
   - component: {fileID: 23336279127984578}
-  - component: {fileID: 65158961014936692}
   - component: {fileID: 114233123336604128}
+  - component: {fileID: 65675895816571454}
   m_Layer: 0
   m_Name: Trampoline
   m_TagString: Untagged
@@ -36,9 +36,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1998953496922370}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 141.5, y: 27.5, z: 5.237295}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 46.74, y: -91.09, z: 303.62}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,19 +84,19 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1998953496922370}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65158961014936692
+  m_Mesh: {fileID: 4300000, guid: c9327ffaa578b16459a0d21c44cc71e3, type: 3}
+--- !u!65 &65675895816571454
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1998953496922370}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.791942, y: 2.2645392, z: 2.4178922}
+  m_Center: {x: 0.00000035762787, y: -0.5265214, z: 0}
 --- !u!114 &114233123336604128
 MonoBehaviour:
   m_ObjectHideFlags: 1

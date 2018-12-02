@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -56,9 +56,9 @@ LightmapSettings:
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
     serializedVersion: 10
-    m_Resolution: 2
-    m_BakeResolution: 40
-    m_AtlasSize: 1024
+    m_Resolution: 1
+    m_BakeResolution: 20
+    m_AtlasSize: 512
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -74,8 +74,8 @@ LightmapSettings:
     m_MixedBakeMode: 2
     m_BakeBackend: 1
     m_PVRSampling: 1
-    m_PVRDirectSampleCount: 32
-    m_PVRSampleCount: 500
+    m_PVRDirectSampleCount: 16
+    m_PVRSampleCount: 250
     m_PVRBounces: 2
     m_PVRFilterTypeDirect: 0
     m_PVRFilterTypeIndirect: 0
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000086, guid: 2a9fe75f6abec9146b933fa77d76114f,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -1147,6 +1148,10 @@ Prefab:
       propertyPath: m_TagString
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22bafc0263107924ba4a9d17b1d10058, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22bafc0263107924ba4a9d17b1d10058, type: 3}
   m_IsPrefabAsset: 0
@@ -1525,7 +1530,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 323e7e2288992dd4ab49889bb4b91309, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.5
+      value: 14.3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 323e7e2288992dd4ab49889bb4b91309, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1811,6 +1816,10 @@ Prefab:
     - target: {fileID: 100000, guid: 22bafc0263107924ba4a9d17b1d10058, type: 3}
       propertyPath: m_Name
       value: Long Island Smooth (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22bafc0263107924ba4a9d17b1d10058, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22bafc0263107924ba4a9d17b1d10058, type: 3}
@@ -3419,6 +3428,10 @@ Prefab:
       propertyPath: m_TagString
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22bafc0263107924ba4a9d17b1d10058, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22bafc0263107924ba4a9d17b1d10058, type: 3}
   m_IsPrefabAsset: 0
@@ -4287,6 +4300,10 @@ Prefab:
       propertyPath: m_Name
       value: Long Island Smooth (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22bafc0263107924ba4a9d17b1d10058, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22bafc0263107924ba4a9d17b1d10058, type: 3}
   m_IsPrefabAsset: 0
@@ -4545,7 +4562,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 323e7e2288992dd4ab49889bb4b91309, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.9
+      value: 10.7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 323e7e2288992dd4ab49889bb4b91309, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4710,7 +4727,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1490206572}
-  m_Material: {fileID: 13400000, guid: 59f3274e4882ade478c6009295764d1f, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4946,7 +4963,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1717551753669770, guid: e8ae1e347a1e3b34d90c4906f918023d, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8ae1e347a1e3b34d90c4906f918023d, type: 2}
@@ -5260,6 +5277,24 @@ Transform:
   m_Father: {fileID: 440982017}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1605617652 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 56dcea5be38842441bf067c39cc8f324,
+    type: 3}
+  m_PrefabInternal: {fileID: 720995378}
+--- !u!136 &1605617653
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1605617652}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.010000002
+  m_Height: 0.03137452
+  m_Direction: 1
+  m_Center: {x: 0.000000001862645, y: 0.0009925505, z: -0.000000001862645}
 --- !u!1001 &1614061076
 Prefab:
   m_ObjectHideFlags: 0
@@ -5701,6 +5736,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0100801, y: 5.4587674, z: 1}
   m_Center: {x: -0.0050399895, y: -2.290579, z: -0.00000047683716}
+--- !u!1 &1877165716 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 56dcea5be38842441bf067c39cc8f324,
+    type: 3}
+  m_PrefabInternal: {fileID: 1523123816}
+--- !u!136 &1877165717
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1877165716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.010000002
+  m_Height: 0.03137452
+  m_Direction: 1
+  m_Center: {x: 0.000000001862645, y: 0.0009925505, z: -0.000000001862645}
 --- !u!1001 &1888012823
 Prefab:
   m_ObjectHideFlags: 0
@@ -5915,6 +5968,10 @@ Prefab:
       propertyPath: m_TagString
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 22bafc0263107924ba4a9d17b1d10058, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22bafc0263107924ba4a9d17b1d10058, type: 3}
   m_IsPrefabAsset: 0
@@ -6074,7 +6131,7 @@ MeshCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1999100970}
-  m_Material: {fileID: 13400000, guid: 59f3274e4882ade478c6009295764d1f, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -6161,7 +6218,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4851142158724258, guid: 8a30058b11032ca4f93d9e119352e3ff, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -90.25
+      value: -91.09
       objectReference: {fileID: 0}
     - target: {fileID: 4851142158724258, guid: 8a30058b11032ca4f93d9e119352e3ff, type: 2}
       propertyPath: m_LocalPosition.z

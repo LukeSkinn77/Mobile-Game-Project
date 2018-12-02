@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Master Folder/lvl_floating_islands.unity
     guid: 38b587b5e4aaaad4da0c788b1f44a61a
+  - enabled: 1
+    path: Assets/Luke Folders/_Scenes/lvl_mainmenu.unity
+    guid: dec5f85c4b9f4354299915ea62399584
   m_configObjects: {}
