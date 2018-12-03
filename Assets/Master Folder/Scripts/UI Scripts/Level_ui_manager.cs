@@ -183,6 +183,11 @@ public class Level_ui_manager : MonoBehaviour {
         StartCoroutine(LoadScene(lvl));
     }
 
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 	public void ScoreUpdate(float score)
 	{
 		//Updates score ui

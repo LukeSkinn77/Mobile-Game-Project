@@ -197,6 +197,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1374421916565446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4212989302824858}
+  - component: {fileID: 114072821778969026}
+  m_Layer: 0
+  m_Name: UI Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1407528922252948
 GameObject:
   m_ObjectHideFlags: 1
@@ -664,6 +680,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4212989302824858
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1374421916565446}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -959.99994, y: -414.54544, z: 0}
+  m_LocalScale: {x: 1.8972331, y: 1.8972331, z: 1.8972331}
+  m_Children: []
+  m_Father: {fileID: 224432105138978636}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &114015020408967560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -713,7 +742,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 114072821778969026}
           m_MethodName: MenuObjectsOn
           m_Mode: 1
           m_Arguments:
@@ -727,6 +756,17 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &114072821778969026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1374421916565446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a568ae615d163de459a73a9e09bc809c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114078811353896680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -929,7 +969,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 114072821778969026}
           m_MethodName: MenuLoad
           m_Mode: 1
           m_Arguments:
@@ -1019,7 +1059,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 114072821778969026}
           m_MethodName: MenuLoad
           m_Mode: 1
           m_Arguments:
@@ -1774,7 +1814,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 114072821778969026}
           m_MethodName: MenuObjectsOff
           m_Mode: 1
           m_Arguments:
@@ -1831,7 +1871,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 114072821778969026}
           m_MethodName: MenuLoad
           m_Mode: 1
           m_Arguments:
@@ -2051,8 +2091,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: MenuLoad
+        - m_Target: {fileID: 114072821778969026}
+          m_MethodName: RestartLevel
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2141,8 +2181,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_MethodName: MenuLoad
+        - m_Target: {fileID: 114072821778969026}
+          m_MethodName: NextLevel
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2569,7 +2609,7 @@ RectTransform:
   - {fileID: 224867648194346558}
   - {fileID: 224183946919079526}
   m_Father: {fileID: 224432105138978636}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2608,7 +2648,7 @@ RectTransform:
   - {fileID: 224463809202992804}
   - {fileID: 224786508871868040}
   m_Father: {fileID: 224432105138978636}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2627,7 +2667,7 @@ RectTransform:
   m_Children:
   - {fileID: 224092943195644766}
   m_Father: {fileID: 224432105138978636}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2649,7 +2689,7 @@ RectTransform:
   - {fileID: 224726833982561506}
   - {fileID: 224629084669894082}
   m_Father: {fileID: 224432105138978636}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2848,6 +2888,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 4212989302824858}
   - {fileID: 224031991632604012}
   - {fileID: 224035110308908588}
   - {fileID: 224817072553142060}
@@ -3099,7 +3140,7 @@ RectTransform:
   - {fileID: 224792628689426274}
   - {fileID: 224412360510919258}
   m_Father: {fileID: 224432105138978636}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3212,7 +3253,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224432105138978636}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
