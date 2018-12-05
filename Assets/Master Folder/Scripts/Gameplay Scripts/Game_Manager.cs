@@ -37,9 +37,12 @@ public class Game_Manager : MonoBehaviour {
 	class PlayerData
 	{
 		public string currentScene;
-	}
+        public float xVal;
+        public float yVal;
+        public float zVal;
+    }
 
-	[Serializable]
+    [Serializable]
 	class GameData
 	{
 		public List<bool> lvlCompletionList;
@@ -109,8 +112,11 @@ public class Game_Manager : MonoBehaviour {
 
 		//Sets class variable to the manager variable
 		data.currentScene = SceneManager.GetActiveScene ().name;
+        data.xVal = savedPlayerLocation.x;
+        data.yVal = savedPlayerLocation.y;
+        data.zVal = savedPlayerLocation.z;
 
-		bf.Serialize (flie, data);
+        bf.Serialize (flie, data);
 		flie.Close();
 	}
 
@@ -127,7 +133,8 @@ public class Game_Manager : MonoBehaviour {
 
 			//Starts loading scene from variable
 			StartCoroutine (Menu_manager.current.LoadScene (data.currentScene));
-		}
+            savedPlayerLocation = new Vector3(data.xVal, data.yVal, data.zVal);
+        }
 	}
 
 	public void SaveProgress()

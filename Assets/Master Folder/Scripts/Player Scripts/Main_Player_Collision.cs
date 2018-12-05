@@ -50,18 +50,20 @@ public class Main_Player_Collision : MonoBehaviour {
 		{
 			//Increases player score, disables collectable and checks score
 			ph.PlayerScoreInc (50);
-            //REMOVE AFTER BETA SHITE
-            //			Debug.Log("Cube Absorbed");
             GameObject particle = Pickups_Particle_Pooling.pickupPool.GetPickupParticle();
             if (particle == null) return;
             particle.transform.position = this.transform.position;
             particle.transform.rotation = this.transform.rotation;
             particle.SetActive(true);
 
-
             other.gameObject.SetActive (false);
 			ScoreCheck ();
 		}
+
+        if (other.GetComponent<Checkpoint>() != null)
+        {
+            other.GetComponent<Checkpoint>().Interaction();
+        }
 
         if (other.GetComponent<IDamagerer>() != null) 
 		{

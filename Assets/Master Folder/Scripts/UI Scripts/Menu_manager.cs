@@ -46,8 +46,13 @@ public class Menu_manager : MonoBehaviour {
 		volumesl.value = AudioListener.volume;
 	}
 
-	//Disables all UI objects but the one selected
-	public void MenuObjectsOn()
+    private void Start()
+    {
+        gm.savedPlayerLocation = Vector3.zero;
+    }
+
+    //Disables all UI objects but the one selected
+    public void MenuObjectsOn()
 	{
 		foreach (GameObject levelobject in lvlslctobjects) 
 		{

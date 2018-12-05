@@ -23,6 +23,7 @@ public class Main_Player_Score_Manager : MonoBehaviour {
         {
             score = 0;
             Debug.Log("You died");
+            Game_Manager.Instance.savedPlayerLocation = Vector3.zero;
             Level_ui_manager.Current.GameOverScreenOn();
             // add the melon die effect here...
             // return to level...
