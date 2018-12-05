@@ -1,41 +1,21 @@
 fileFormatVersion: 2
-guid: 0cba131617d39e845bfc4e03e8687d76
+guid: 10cbcf4105d2b2d4883a765dad93e655
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: pMelon_1
-    100004: pMelon_2
-    100006: pMelon_3
-    100008: pMelon_4
-    100010: pMelon_5
-    100012: pMelon_6
+    100002: pCylinder1
+    100004: polySurface1
     400000: //RootNode
-    400002: pMelon_1
-    400004: pMelon_2
-    400006: pMelon_3
-    400008: pMelon_4
-    400010: pMelon_5
-    400012: pMelon_6
+    400002: pCylinder1
+    400004: polySurface1
     2100000: lambert1
-    2300000: pMelon_1
-    2300002: pMelon_2
-    2300004: pMelon_3
-    2300006: pMelon_4
-    2300008: pMelon_5
-    2300010: pMelon_6
-    3300000: pMelon_1
-    3300002: pMelon_2
-    3300004: pMelon_3
-    3300006: pMelon_4
-    3300008: pMelon_5
-    3300010: pMelon_6
-    4300000: pMelon_1
-    4300002: pMelon_2
-    4300004: pMelon_3
-    4300006: pMelon_4
-    4300008: pMelon_5
-    4300010: pMelon_6
+    2300000: pCylinder1
+    2300002: polySurface1
+    3300000: pCylinder1
+    3300002: polySurface1
+    4300000: polySurface1
+    4300002: pCylinder1
   externalObjects: {}
   materials:
     importMaterials: 1
