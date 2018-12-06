@@ -46,6 +46,7 @@ public class Tutorial_UI : MonoBehaviour {
                     textTutorial.text = "Collect points to level up and increase speed";
                     break;
             }
+            StopAllCoroutines();
             textTutorial.gameObject.SetActive(true);
             StartCoroutine(TextFadeIn(0.75f));
         }
