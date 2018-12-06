@@ -11,7 +11,7 @@ public class Collectables : MonoBehaviour {
 
     void Start()
     {
-        collectableObjects =  GameObject.FindGameObjectsWithTag("Pickup");
+        //collectableObjects =  GameObject.FindGameObjectsWithTag("Pickup");
 
     }
 

@@ -83,5 +83,6 @@ public class Tutorial_UI : MonoBehaviour {
         //Disable and blank the text
         textTutorial.text = "";
         textTutorial.gameObject.SetActive(false);
+        StopAllCoroutines();
     }
 }

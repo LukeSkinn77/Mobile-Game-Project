@@ -5,11 +5,13 @@ using UnityEngine;
 public class Area_Turret_Control : Base_Turret_Script {
 
 	float angle = 45.0f;
+    public GameObject target;
 
 	void FixedUpdate () 
 	{
 		//Sets up a raycast and a line
 		Ray ray1 = new Ray (firingpoint.transform.position - rayheight, firingpoint.transform.forward);
+
 		float raylgh = 9.0f;
 		lineren.SetPosition (0, ray1.origin);
 		lineren.SetPosition (1, ray1.GetPoint (raylgh));
@@ -20,11 +22,13 @@ public class Area_Turret_Control : Base_Turret_Script {
 		case 1:
 			//Rotates while casting a ray and line
 			transform.Rotate (new Vector3 (0, rotatespeed, 0) * Time.deltaTime);
-			if (Physics.Raycast (ray1, out rayhit, raylgh)) 
+            target.transform.localPosition = new Vector3(0, -1.2f, 0);
+            if (Physics.Raycast (ray1, out rayhit, raylgh)) 
 			{
 				lineren.SetPosition (1, rayhit.point);
-			}
-			break;
+                //target.transform.position = lineren.GetPosition(1);
+            }
+            break;
 		case 2:
 			//Sets ray to point towards the player's position
 			raylgh = 90.0f;
@@ -40,9 +44,10 @@ public class Area_Turret_Control : Base_Turret_Script {
 			if (Physics.Raycast (ray1, out rayhit, raylgh)) 
 			{
 				lineren.SetPosition (1, rayhit.point);
-			}
-			//Resets firerate after firing
-			if (Time.time > firetime) 
+                target.transform.position = new Vector3(rayhit.transform.position.x, rayhit.transform.position.y - 0.3f, rayhit.transform.position.z);
+            }
+                //Resets firerate after firing
+            if (Time.time > firetime) 
 			{
 				Fire ();
 				firetime = Time.time + firerate;
