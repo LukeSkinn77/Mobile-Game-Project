@@ -11,10 +11,12 @@ public class Pickups_Particle_Pooling : MonoBehaviour {
     public GameObject pooledPickupParticle;
     public GameObject pooledDamageParticle;
     public GameObject pooledCloudParticle;
+    public GameObject pooledCannonball;
 
     public List<GameObject> pooledPickupParticles;
     public List<GameObject> pooledDamageParticles;
     public List<GameObject> pooledCloudParticles;
+    public List<GameObject> pooledCannonballs;
 
     // Destroy unloads object from the memory and set reference to null so in order to use it again you need to recreate it, via let's say instantiate. 
     //Meanwhile SetActive just hides the object and disables all components on it so if you need you can use it again.
@@ -33,6 +35,7 @@ public class Pickups_Particle_Pooling : MonoBehaviour {
         SetupParticlePickup();
         SetupDamageParticle();
         SetupCloudParticle();
+        SetupCannonball();
     }
 
 
@@ -73,6 +76,19 @@ public class Pickups_Particle_Pooling : MonoBehaviour {
             GameObject cloudParticle = Instantiate(pooledCloudParticle, transform.position, transform.rotation);
             cloudParticle.SetActive(false);
             pooledCloudParticles.Add(cloudParticle);
+        }
+
+    }
+
+    void SetupCannonball()
+    {
+        pooledCannonballs = new List<GameObject>();
+
+        for (int y = 0; y < pooledAmount; y++)
+        {
+            GameObject cannonball = Instantiate(pooledCannonball, transform.position, transform.rotation);
+            cannonball.SetActive(false);
+            pooledCannonballs.Add(cannonball);
         }
 
     }
@@ -147,6 +163,27 @@ public class Pickups_Particle_Pooling : MonoBehaviour {
             cloudParticle.SetActive(false);
             pooledCloudParticles.Add(cloudParticle);
             return cloudParticle;
+        }
+
+        return null;
+    }
+
+    public GameObject GetCannonball()
+    {
+        for (int y = 0; y < pooledCannonballs.Count; y++)
+        {
+            if (!pooledCannonballs[y].activeInHierarchy)
+            {
+                return pooledCannonballs[y];
+            }
+        }
+
+        if (expandPool)
+        {
+            GameObject cannonball = Instantiate(pooledCannonball, transform.position, transform.rotation);
+            cannonball.SetActive(false);
+            pooledCannonballs.Add(cannonball);
+            return cannonball;
         }
 
         return null;

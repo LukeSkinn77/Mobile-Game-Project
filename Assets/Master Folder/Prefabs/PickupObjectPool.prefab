@@ -59,6 +59,9 @@ MonoBehaviour:
     type: 2}
   pooledCloudParticle: {fileID: 1895056023666230, guid: 965bceb8e2da26244b65cf24ac096aa3,
     type: 2}
+  pooledCannonball: {fileID: 1508108641009140, guid: 3bb95784de55f9f4b84ef84f3753521d,
+    type: 2}
   pooledPickupParticles: []
   pooledDamageParticles: []
   pooledCloudParticles: []
+  pooledCannonballs: []

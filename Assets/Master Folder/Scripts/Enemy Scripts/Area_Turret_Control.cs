@@ -58,10 +58,15 @@ public class Area_Turret_Control : Base_Turret_Script {
 
 	public override void Fire()
 	{
-		var obj = Instantiate (Cnball, firingpoint.transform.position, firingpoint.transform.rotation);
+		//var obj = Instantiate (Cnball, firingpoint.transform.position, firingpoint.transform.rotation);
+        GameObject obj = Pickups_Particle_Pooling.pickupPool.GetCannonball();
+        if (obj == null) return;
+        obj.transform.position = firingpoint.transform.position;
+        obj.transform.rotation = firingpoint.transform.rotation;
+        obj.SetActive(true);
 
-		//calculates space inbetween player and firepoint
-		float aim = Vector3.Distance (firingpoint.transform.position, playerobj.position);
+        //calculates space inbetween player and firepoint
+        float aim = Vector3.Distance (firingpoint.transform.position, playerobj.position);
 
 		//Calculates the required velocity Y and Z values using the distance inbetween the objects,
 		//The current gravity and the angle that the angle the projectile will fire from
