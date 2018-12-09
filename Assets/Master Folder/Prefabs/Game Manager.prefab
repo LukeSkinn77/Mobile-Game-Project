@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4099477501952216}
-  - component: {fileID: 114762266735762046}
+  - component: {fileID: 114309893417224690}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114762266735762046
+--- !u!114 &114309893417224690
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,4 +54,18 @@ MonoBehaviour:
   volume: 1
   frameRate: 60
   savedPlayerLocation: {x: 0, y: 0, z: 0}
+  currentSkin:
+    skinName: 
+    oneLevel: {fileID: 0}
+    twoLevel: {fileID: 0}
+    threeLevel: {fileID: 0}
   lvlCompletionList: 
+  playerSkins:
+  - skinName: Melon
+    oneLevel: {fileID: 2100000, guid: dad793260ffc19f4db4f15feeeec1805, type: 2}
+    twoLevel: {fileID: 2100000, guid: a13710c752c458f4397f6ef9a3d7e9bb, type: 2}
+    threeLevel: {fileID: 2100000, guid: 5e0d0fb88d75f8e49b3a4e3457bde99c, type: 2}
+  - skinName: Metal
+    oneLevel: {fileID: 2100000, guid: d61b650aaa443c0419224560a66495de, type: 2}
+    twoLevel: {fileID: 2100000, guid: 865582361d240174fa4a7f557a69a161, type: 2}
+    threeLevel: {fileID: 2100000, guid: 174ea4a562bdbfe41a9f8a6515f5e1d3, type: 2}

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Menu_manager : MonoBehaviour {
 
-	public static Menu_manager current;
+	public static Menu_manager Current;
 
 	GameObject[] menuobjects;
 	GameObject[] startobjects;
@@ -23,12 +23,15 @@ public class Menu_manager : MonoBehaviour {
 
 	Menu_Camera_Control cn;
 
-	[SerializeField]
+    public int skinSlct = 0;
+    public Text skinTxt;
+
+    [SerializeField]
 	Game_Manager gm;
 
-	void Awake()
+    void Awake()
 	{
-		current = this;
+		Current = this;
 		gm = GameObject.Find ("Game Manager").GetComponent<Game_Manager> ();
 		gm.LoadOptions ();
 
@@ -44,11 +47,13 @@ public class Menu_manager : MonoBehaviour {
 		FrameRateEnabler ();
 		MenuObjectsOn ();
 		volumesl.value = AudioListener.volume;
-	}
+    }
 
     private void Start()
     {
         gm.savedPlayerLocation = Vector3.zero;
+        skinSlct = gm.loadedSkin;
+        skinTxt.text = gm.playerSkins[skinSlct].skinName;
     }
 
     //Disables all UI objects but the one selected
@@ -300,4 +305,15 @@ public class Menu_manager : MonoBehaviour {
 			framerateText.text = "60";
 		}
 	}
+
+    public void PlayerSkinSelect()
+    {
+        skinSlct += 1;
+        if (skinSlct > gm.playerSkins.Count - 1)
+        {
+            skinSlct = 0;
+        }
+        skinTxt.text = gm.playerSkins[skinSlct].skinName;
+        gm.currentSkin = gm.playerSkins[skinSlct];
+    }
 }

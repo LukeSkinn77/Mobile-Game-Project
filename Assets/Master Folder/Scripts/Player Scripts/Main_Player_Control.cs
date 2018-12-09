@@ -18,7 +18,6 @@ public class Main_Player_Control : MonoBehaviour {
 	private float currenttime;
 	private float endtime;
 
-	//public bool drag;
 	public bool goingForward;
 	public bool goingBackward;
 	public bool direcho;
@@ -43,8 +42,14 @@ public class Main_Player_Control : MonoBehaviour {
 
 	public AudioClip audioJump;
 
-	// Use this for initialization
-	void Start () 
+    private void Awake()
+    {
+        PlayerTexture();
+        LevelOneModifier();
+    }
+
+    // Use this for initialization
+    void Start () 
 	{
 		PlayerPosition ();
 		//initialDirection = Input.acceleration; //new Vector3 (Input.acceleration.x, 0.0f, Input.acceleration.z);
@@ -57,7 +62,15 @@ public class Main_Player_Control : MonoBehaviour {
 
 	}
 
-	void PlayerPosition()
+    void PlayerTexture()
+    {
+        //Sets player texture to the one stored in the game manager
+        mat_levelone = Game_Manager.Instance.currentSkin.oneLevel;
+        mat_leveltwo = Game_Manager.Instance.currentSkin.twoLevel;
+        mat_levelthree = Game_Manager.Instance.currentSkin.threeLevel;
+    }
+
+    void PlayerPosition()
 	{
 		if (Game_Manager.Instance.savedPlayerLocation == Vector3.zero)
 		{
@@ -93,7 +106,7 @@ public class Main_Player_Control : MonoBehaviour {
 				break;
 
 			case TouchPhase.Ended:
-				Debug.Log (endtouch.x);
+                //Checks Y and X values of endtouch to decide on action
 				if (endtouch.y >= 100) 
 				{
 					goingForward = true;
@@ -109,13 +122,14 @@ public class Main_Player_Control : MonoBehaviour {
                 {
                     cam.RotateOverTime(endtouch.x / 20);
                 }
-
+                //If little to no movement, jump
                 if ((endtouch.x <= 50) && (endtouch.x >= -50) && (endtouch.y <= 100) && (endtouch.y >= -100)) 
 				{
 					TapAction ();
 				} 
 
 				direcho = true;
+                //Resets endtouch
 				endtouch = Vector2.zero;
 				break;
 			}

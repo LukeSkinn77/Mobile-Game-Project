@@ -27,6 +27,7 @@ public class Cannonball : MonoBehaviour, IDamagerer {
 
     void OnDisable()
     {
+        //Ensures that there are no possible errors
         StopAllCoroutines();
         CancelInvoke();
     }
@@ -41,6 +42,8 @@ public class Cannonball : MonoBehaviour, IDamagerer {
 
     IEnumerator Wait()
     {
+        //Waits for a small amount of time so collisions do not overlap 
+        //And cancel out the damage collision on the player
         yield return new WaitForSeconds(0.01f);
         DisableAndDestroy();
     }

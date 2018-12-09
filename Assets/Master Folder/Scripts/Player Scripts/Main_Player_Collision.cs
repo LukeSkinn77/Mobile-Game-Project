@@ -23,9 +23,11 @@ public class Main_Player_Collision : MonoBehaviour {
 
 	void Start()
 	{
+        pl = GetComponent<Main_Player_Control>();
+        ph = GetComponent<Main_Player_Score_Manager>();
+        ScoreCheck();
 		//Retieves components and sets color
-		pl = GetComponent<Main_Player_Control> ();
-		ph = GetComponent<Main_Player_Score_Manager> ();
+
 		rend = model.GetComponent<Renderer> ();
 
 		normalColour = rend.material.color;
@@ -92,6 +94,7 @@ public class Main_Player_Collision : MonoBehaviour {
                 pl.rb.AddForce(0.0f, 0.5f, 0.0f, ForceMode.Impulse);
                 StartCoroutine(DamageColourTrigger());
                 ScoreCheck();
+                //Ensures the player is not continually damaged
                 isDamaged = true;
             }
         }

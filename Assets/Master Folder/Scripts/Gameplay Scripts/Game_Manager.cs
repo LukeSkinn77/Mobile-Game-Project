@@ -13,10 +13,14 @@ public class Game_Manager : MonoBehaviour {
 	public float volume = 1.0f;
 
 	public int frameRate = 60;
+    public int loadedSkin;
 
 	public Vector3 savedPlayerLocation = Vector3.zero;
 
+    public Player_Skins_Item currentSkin;
+
 	public List<bool> lvlCompletionList;
+    public List<Player_Skins_Item> playerSkins;
 
 	public static Game_Manager Instance
 	{
@@ -31,6 +35,7 @@ public class Game_Manager : MonoBehaviour {
 	{
 		public float volume;
 		public int frameRate;
+        public int skinSelect;
 	}
 
 	[Serializable]
@@ -59,6 +64,7 @@ public class Game_Manager : MonoBehaviour {
 		instance = this;
 		DontDestroyOnLoad (gameObject);
 		ProgressionInit ();
+        currentSkin = playerSkins[0];
 		LoadProgress ();
 	}
 
@@ -80,6 +86,7 @@ public class Game_Manager : MonoBehaviour {
 		data.volume = AudioListener.volume;
 		volume = AudioListener.volume;
 		data.frameRate = frameRate;
+        data.skinSelect = Menu_manager.Current.skinSlct;
 
 		bf.Serialize (flie, data);
 		flie.Close();
@@ -100,7 +107,10 @@ public class Game_Manager : MonoBehaviour {
 			AudioListener.volume = data.volume;
 			frameRate = data.frameRate;
 			volume = data.volume;
-		}
+            currentSkin = playerSkins[data.skinSelect];
+            loadedSkin = data.skinSelect;
+
+        }
 	}
 
 	public void SavePlayer()
@@ -132,7 +142,7 @@ public class Game_Manager : MonoBehaviour {
 			file.Close ();
 
 			//Starts loading scene from variable
-			StartCoroutine (Menu_manager.current.LoadScene (data.currentScene));
+			StartCoroutine (Menu_manager.Current.LoadScene (data.currentScene));
             savedPlayerLocation = new Vector3(data.xVal, data.yVal, data.zVal);
         }
 	}
