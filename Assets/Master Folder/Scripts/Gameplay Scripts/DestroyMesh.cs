@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class DestroyMesh : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject player;
 
-
-    // TEST FOR INTERFACE DAMAGE
-    //[SerializeField]
-    //private int damageDealt;
-    //public int DamageDealt { get { return damageDealt; } } 
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     void OnTriggerEnter(Collider other)
     {

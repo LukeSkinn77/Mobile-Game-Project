@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Magnetism : MonoBehaviour {
 
-    public GameObject player;
+    private GameObject player;
     public float distance;
 
     [SerializeField]
@@ -12,6 +12,10 @@ public class Magnetism : MonoBehaviour {
 
     bool isFollowing = false;
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     // Update is called once per frame
     void Update()
     {
