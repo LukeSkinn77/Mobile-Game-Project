@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Area_Turret_Control : Base_Turret_Script {
 
-	float angle = 45.0f;
+	public float angle = 45.0f;
     public GameObject target;
 
 	void FixedUpdate () 
