@@ -152,7 +152,6 @@ public class Level_ui_manager : MonoBehaviour {
         {
             gmobject.SetActive(true);
         }
-        Time.timeScale = 0.0f;
     }
 
     public void MenuLoad()
@@ -238,7 +237,7 @@ public class Level_ui_manager : MonoBehaviour {
 		scoreSlider.maxValue = maxvalueinp;
 
 		//Show player level
-		levelTxt.text = "" + playerstate;
+		levelTxt.text = "Level: " + playerstate;
 	}
 
     IEnumerator ImageFadeOut(float fadeTimer, Image fadeImage)

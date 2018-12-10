@@ -234,7 +234,7 @@ public class Menu_manager : MonoBehaviour {
 	public void BonusStage()
 	{
 		//Starts asynchronous loading of scene
-		StartCoroutine(LoadScene("lvl_test2"));
+		StartCoroutine(LoadScene("lvl_tutorial"));
 	}
 
 	public void ExitGame()

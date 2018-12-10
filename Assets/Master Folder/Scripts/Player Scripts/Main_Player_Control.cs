@@ -44,13 +44,13 @@ public class Main_Player_Control : MonoBehaviour {
 
     private void Awake()
     {
+        PlayerTexture();
         LevelOneModifier();
     }
 
     // Use this for initialization
     void Start () 
 	{
-        PlayerTexture();
         PlayerPosition();
 		//initialDirection = Input.acceleration; //new Vector3 (Input.acceleration.x, 0.0f, Input.acceleration.z);
 		Game_Manager.Instance.savedPlayerLocation = transform.position;

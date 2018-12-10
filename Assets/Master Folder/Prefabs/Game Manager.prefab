@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 1
   frameRate: 60
+  loadedSkin: 0
   savedPlayerLocation: {x: 0, y: 0, z: 0}
   currentSkin:
     skinName: 
@@ -62,9 +63,9 @@ MonoBehaviour:
   lvlCompletionList: 
   playerSkins:
   - skinName: Melon
-    oneLevel: {fileID: 2100000, guid: dad793260ffc19f4db4f15feeeec1805, type: 2}
-    twoLevel: {fileID: 2100000, guid: a13710c752c458f4397f6ef9a3d7e9bb, type: 2}
-    threeLevel: {fileID: 2100000, guid: 5e0d0fb88d75f8e49b3a4e3457bde99c, type: 2}
+    oneLevel: {fileID: 2100000, guid: 02eab640e1af8aa40915ff44d3f0c8dd, type: 2}
+    twoLevel: {fileID: 2100000, guid: a00a41b6876328941a46872af0fd6fe0, type: 2}
+    threeLevel: {fileID: 2100000, guid: d852d66ac1662524895a76b0ebed3a78, type: 2}
   - skinName: Metal
     oneLevel: {fileID: 2100000, guid: d61b650aaa443c0419224560a66495de, type: 2}
     twoLevel: {fileID: 2100000, guid: 865582361d240174fa4a7f557a69a161, type: 2}

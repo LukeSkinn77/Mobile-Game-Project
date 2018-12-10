@@ -6,6 +6,8 @@ public class Main_Player_Score_Manager : MonoBehaviour {
 	
 	public int score = 100;
 	public float powerupBar = 100;
+    public GameObject melon;
+    bool isDead = false;
 
 	// Use this for initialization
 	void Start () 
@@ -19,14 +21,18 @@ public class Main_Player_Score_Manager : MonoBehaviour {
 	{
 		//Reduces score amount and ui amount
 		score -= damage;
-        if (score < 0)
+        if ((score < 0) && (!isDead))
         {
             score = 0;
-            Debug.Log("You died");
             Game_Manager.Instance.savedPlayerLocation = Vector3.zero;
             Level_ui_manager.Current.GameOverScreenOn();
-            // add the melon die effect here...
-            // return to level...
+            Instantiate(melon, transform.position, transform.rotation);
+            gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<Main_Player_Collision>().enabled = false;
+            gameObject.GetComponent<Main_Player_Control>().enabled = false;
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            this.enabled = false;
+            isDead = true;
         }
         Level_ui_manager.Current.ScoreUpdate (score);
 	}
