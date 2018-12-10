@@ -758,6 +758,10 @@ Prefab:
       propertyPath: m_TagString
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: b879b1a922ee37441a23fe5afb481181, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f725a99d3a3ce15438c90f467dcfc419, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b879b1a922ee37441a23fe5afb481181, type: 3}
   m_IsPrefabAsset: 0
@@ -4770,6 +4774,10 @@ Prefab:
       propertyPath: m_TagString
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 0ddb229a5e5da0c49b6f9495d5270eb8, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: c43109c2576f5954f9cd07963ff45582, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ddb229a5e5da0c49b6f9495d5270eb8, type: 3}
   m_IsPrefabAsset: 0
