@@ -1741,7 +1741,7 @@ GameObject:
   - component: {fileID: 512187326}
   m_Layer: 5
   m_Name: Title Image
-  m_TagString: ShowOnMenu
+  m_TagString: StartScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1761,7 +1761,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00006103473, y: 169.9988}
+  m_AnchoredPosition: {x: 0, y: 170}
   m_SizeDelta: {x: 1230, y: 620}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &512187326
@@ -3525,7 +3525,7 @@ RectTransform:
   m_GameObject: {fileID: 1273360387}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.000007, y: 1.000007, z: 1.000007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 512187325}
   - {fileID: 288275690}
@@ -3536,7 +3536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1276279364
