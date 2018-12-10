@@ -4572,7 +4572,7 @@ MonoBehaviour:
   framerateText: {fileID: 188120408}
   levelOne: lvl_floating_islands
   levelTwo: lvl_frozen_heights
-  levelThree: lvl_pyro_inferno
+  levelThree: lvl_fruit_hazard
   skinSlct: 0
   skinTxt: {fileID: 2007023066}
   gm: {fileID: 0}
