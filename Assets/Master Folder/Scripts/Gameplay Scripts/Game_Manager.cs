@@ -178,6 +178,7 @@ public class Game_Manager : MonoBehaviour {
         //Sets class variable to the manager variable
         //data.lvlCompletionList = lvlCompletionList;
         data.highScore = scoreTotal;
+		highScore = scoreTotal;
 
 		bf.Serialize (flie, data);
 		flie.Close();

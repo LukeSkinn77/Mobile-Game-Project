@@ -2375,7 +2375,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4730283962434658, guid: f76583eb069f34f41ab15219293bb642, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.36
+      value: -3.16
       objectReference: {fileID: 0}
     - target: {fileID: 4730283962434658, guid: f76583eb069f34f41ab15219293bb642, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5554,6 +5554,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 82816401761072614, guid: dbe60d49ad6704143aae427e6c2035e1,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c6b6f7b03ebefb14593f8895b75e7e24, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbe60d49ad6704143aae427e6c2035e1, type: 2}
   m_IsPrefabAsset: 0
