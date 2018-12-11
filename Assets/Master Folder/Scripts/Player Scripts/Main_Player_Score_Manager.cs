@@ -25,10 +25,12 @@ public class Main_Player_Score_Manager : MonoBehaviour {
         {
             score = 0;
             Game_Manager.Instance.savedPlayerLocation = Vector3.zero;
+            Game_Manager.Instance.ScoreReductor();
             Level_ui_manager.Current.GameOverScreenOn();
             Instantiate(melon, transform.position, transform.rotation);
             gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
             gameObject.GetComponent<Main_Player_Collision>().enabled = false;
+            gameObject.GetComponent<SphereCollider>().enabled = false;
             gameObject.GetComponent<Main_Player_Control>().enabled = false;
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             this.enabled = false;

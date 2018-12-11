@@ -152,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1861513632318316}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4417221907880204}
@@ -419,7 +419,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ca6d7184d4107b442bfdeed5586e5d5b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -533,7 +533,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageColour: {r: 1, g: 0.11764706, b: 0.11764706, a: 0}
   normalColour: {r: 0, g: 0, b: 0, a: 0}
+  miniScore: 300
+  maxScore: 500
   model: {fileID: 1408587029467842}
+  audioCollect: {fileID: 8300000, guid: a65ff385af85dfb46a8a7ab70343c8f8, type: 3}
+  audioHurt: {fileID: 8300000, guid: 223808281ce27ef42be353836ec7325e, type: 3}
 --- !u!114 &114635089536311620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -584,11 +588,13 @@ MonoBehaviour:
   pgc: {fileID: 114199221542254176}
   cam: {fileID: 114635089536311620}
   model: {fileID: 4153531944068778}
-  mat_levelone: {fileID: 2100000, guid: d61b650aaa443c0419224560a66495de, type: 2}
-  mat_leveltwo: {fileID: 2100000, guid: 865582361d240174fa4a7f557a69a161, type: 2}
-  mat_levelthree: {fileID: 2100000, guid: a377dd37a8c1f764fbe946735cde518e, type: 2}
+  mat_levelone: {fileID: 0}
+  mat_leveltwo: {fileID: 0}
+  mat_levelthree: {fileID: 0}
   explo: {fileID: 1895056023666230, guid: 965bceb8e2da26244b65cf24ac096aa3, type: 2}
   audioJump: {fileID: 8300000, guid: 388f7367dd67fd34c94d91110e8982b2, type: 3}
+  audioFloat: {fileID: 8300000, guid: d4dccccc4744d1647a218b0826ab746b, type: 3}
+  audioLevel: {fileID: 8300000, guid: 8f6f80bd94963c546a36d1572fe1683d, type: 3}
 --- !u!114 &114834052830550286
 MonoBehaviour:
   m_ObjectHideFlags: 1

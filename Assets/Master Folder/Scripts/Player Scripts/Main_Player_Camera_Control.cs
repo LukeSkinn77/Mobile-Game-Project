@@ -31,7 +31,7 @@ public class Main_Player_Camera_Control : MonoBehaviour {
 	{
 		//Continuously maintains a position equivalent to the offset distance
 		//transform.position = player.transform.position + offset;
-		if (isRotating) 
+		if ((isRotating) && (Time.timeScale > 0.0f)) 
 		{
 			Rotate ();
 		}

@@ -14,12 +14,21 @@ public class Main_Player_Collision : MonoBehaviour {
 
 	Renderer rend;
 
+    public int miniScore;
+    public int maxScore;
+
 	public GameObject model;
 
-	void Awake()
-	{
+    AudioSource aud;
 
-	}
+    public AudioClip audioCollect;
+    public AudioClip audioHurt;
+
+    void Awake()
+	{
+        aud = GetComponent<AudioSource>();
+
+    }
 
 	void Start()
 	{
@@ -31,16 +40,19 @@ public class Main_Player_Collision : MonoBehaviour {
 		rend = model.GetComponent<Renderer> ();
 
 		normalColour = rend.material.color;
-		Level_ui_manager.Current.ScoreSliderValue (200, ph.score, pl.playerpowerupstate_temp);
+		Level_ui_manager.Current.ScoreSliderValue (miniScore, ph.score, pl.playerpowerupstate_temp);
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "PowerUp") 
 		{
-			//Sets power state to the powerup's state, sets the powerup bar to full
-			//Sets the powerup ui to the correct state and disables the powerup
-			int powerState = other.GetComponent<Power_up_base> ().Powerupstate;
+            aud.clip = audioCollect;
+            aud.Play();
+
+            //Sets power state to the powerup's state, sets the powerup bar to full
+            //Sets the powerup ui to the correct state and disables the powerup
+            int powerState = other.GetComponent<Power_up_base> ().Powerupstate;
 			ph.powerupBar = 100;
 			pl.playerpowerupstate = powerState;
 			Level_ui_manager.Current.PowerupTextChanger (powerState);
@@ -50,6 +62,8 @@ public class Main_Player_Collision : MonoBehaviour {
 
 		if (other.tag == "Collectable") 
 		{
+            aud.clip = audioCollect;
+            aud.Play();
 			//Increases player score, disables collectable and checks score
 			ph.PlayerScoreInc (50);
             GameObject particle = Pickups_Particle_Pooling.pickupPool.GetPickupParticle();
@@ -64,6 +78,9 @@ public class Main_Player_Collision : MonoBehaviour {
 
         if (other.GetComponent<Checkpoint>() != null)
         {
+            aud.clip = audioCollect;
+            aud.Play();
+
             other.GetComponent<Checkpoint>().Interaction();
         }
 
@@ -71,6 +88,9 @@ public class Main_Player_Collision : MonoBehaviour {
 		{
             if (!isDamaged)
             {
+                aud.clip = audioHurt;
+                aud.Play();
+
                 //Reduces score, adds upward force, flashes material colour to red
                 //And checks the score
                 ph.PlayerScoreDamage(other.GetComponent<IDamagerer>().DamageDealt);
@@ -103,7 +123,7 @@ public class Main_Player_Collision : MonoBehaviour {
     void ScoreCheck()
 	{
 		//Changes the player state and material based on their score amount
-		if (ph.score < 200) 
+		if (ph.score < miniScore) 
 		{
 			if (pl.playerpowerupstate != 0) 
 			{
@@ -113,11 +133,11 @@ public class Main_Player_Collision : MonoBehaviour {
 					pl.playerpowerupstate = 0;
 				}				
 				pl.playerpowerupstate_temp = 0;
-				Level_ui_manager.Current.ScoreSliderValue (200, ph.score, pl.playerpowerupstate_temp);
+				Level_ui_manager.Current.ScoreSliderValue (miniScore, ph.score, pl.playerpowerupstate_temp);
 				normalColour = rend.material.color;
 			}
 		} 
-		else if ((ph.score >= 200) && (ph.score < 300)) 
+		else if ((ph.score >= miniScore) && (ph.score < maxScore)) 
 		{
 			if (pl.playerpowerupstate != 1) 
 			{
@@ -127,11 +147,11 @@ public class Main_Player_Collision : MonoBehaviour {
 					pl.playerpowerupstate = 1;
 				}
 				pl.playerpowerupstate_temp = 1;
-				Level_ui_manager.Current.ScoreSliderValue (300, ph.score, pl.playerpowerupstate_temp);
+				Level_ui_manager.Current.ScoreSliderValue (maxScore, ph.score, pl.playerpowerupstate_temp);
 				normalColour = rend.material.color;
 			}
 		} 
-		else if (ph.score >= 300)
+		else if (ph.score >= maxScore)
 		{
 			if (pl.playerpowerupstate != 2) 
 			{
@@ -141,7 +161,7 @@ public class Main_Player_Collision : MonoBehaviour {
 					pl.playerpowerupstate = 2;
 				}				
 				pl.playerpowerupstate_temp = 2;
-				Level_ui_manager.Current.ScoreSliderValue (300, ph.score, pl.playerpowerupstate_temp);
+				Level_ui_manager.Current.ScoreSliderValue (maxScore, ph.score, pl.playerpowerupstate_temp);
 				normalColour = rend.material.color;
 			}
 		}

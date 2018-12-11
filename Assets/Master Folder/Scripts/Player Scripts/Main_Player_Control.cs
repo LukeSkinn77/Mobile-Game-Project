@@ -41,10 +41,13 @@ public class Main_Player_Control : MonoBehaviour {
 	public GameObject explo;
 
 	public AudioClip audioJump;
+    public AudioClip audioFloat;
+    public AudioClip audioLevel;
 
     private void Awake()
     {
         PlayerTexture();
+        audi = GetComponent<AudioSource>();
         LevelOneModifier();
     }
 
@@ -58,7 +61,6 @@ public class Main_Player_Control : MonoBehaviour {
 		//Gets components
 		rb = GetComponent<Rigidbody> ();
 		ph = GetComponent<Main_Player_Score_Manager> ();
-		audi = GetComponent<AudioSource> ();
 
 	}
 
@@ -82,10 +84,10 @@ public class Main_Player_Control : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		//TouchControls ();
-		TouchControls();
-		//Debug.Log ("Welp: " + endtouch.x);
-
+        if (Time.timeScale > 0.0f)
+        {
+            TouchControls();
+        }
 	}
 		
 	void TouchControls()
@@ -143,10 +145,6 @@ public class Main_Player_Control : MonoBehaviour {
 		PlayerZMovement ();
 		KeyBoardMovement ();
 		GlideCheck ();
-//		if (playerpowerupstate == 5) 
-//		{
-//			Time.timeScale = 0.5f;
-//		}
 	}
 
 	void PlayerZMovement()
@@ -236,7 +234,9 @@ public class Main_Player_Control : MonoBehaviour {
 			} 
 			if (!pgc.ground && !pgc.glideJump) 
 			{
-				rb.velocity = new Vector3 (rb.velocity.x, 0, rb.velocity.z);
+                audi.clip = audioFloat;
+                audi.Play();
+                rb.velocity = new Vector3 (rb.velocity.x, 0, rb.velocity.z);
 				pgc.par.Play ();
 				//Physics.gravity = new Vector3 (0.0f, -6.0f, 0.0f);
 				pgc.glideJump = true;
@@ -269,24 +269,30 @@ public class Main_Player_Control : MonoBehaviour {
 
 	public void LevelOneModifier()
 	{
-		//Sets material, speed and jump force for player level one
-		model.gameObject.GetComponent<Renderer> ().material = mat_levelone;
+        audi.clip = audioLevel;
+        audi.Play();
+        //Sets material, speed and jump force for player level one
+        model.gameObject.GetComponent<Renderer> ().material = mat_levelone;
 		speed = 8.0f;
 		jumpforce = 0.8f;
 	}
 
 	public void LevelTwoModifier()
 	{
-		//Sets material, speed and jump force for player level two
-		model.gameObject.GetComponent<Renderer> ().material = mat_leveltwo;
+        audi.clip = audioLevel;
+        audi.Play();
+        //Sets material, speed and jump force for player level two
+        model.gameObject.GetComponent<Renderer> ().material = mat_leveltwo;
 		speed = 10.0f;
 		jumpforce = 0.9f;
 	}
 
 	public void LevelThreeModifier()
 	{
-		//Sets material, speed and jump force for player level three
-		model.gameObject.GetComponent<Renderer> ().material = mat_levelthree;
+        audi.clip = audioLevel;
+        audi.Play();
+        //Sets material, speed and jump force for player level three
+        model.gameObject.GetComponent<Renderer> ().material = mat_levelthree;
 		speed = 12.0f;
 		jumpforce = 1.0f;
 	}

@@ -26,8 +26,12 @@ public class Menu_manager : MonoBehaviour {
     public int skinSlct = 0;
     public Text skinTxt;
 
+    public Text scoreText;
+
     [SerializeField]
 	Game_Manager gm;
+
+    AudioSource aud;
 
     void Awake()
 	{
@@ -35,7 +39,9 @@ public class Menu_manager : MonoBehaviour {
 		gm = GameObject.Find ("Game Manager").GetComponent<Game_Manager> ();
 		gm.LoadOptions ();
 
-		menuobjects = GameObject.FindGameObjectsWithTag ("ShowOnMenu");
+        aud = GetComponent<AudioSource>();
+
+        menuobjects = GameObject.FindGameObjectsWithTag ("ShowOnMenu");
 		loadobjects = GameObject.FindGameObjectsWithTag ("LoadScreen");
 		optionobjects = GameObject.FindGameObjectsWithTag ("OptionScreen");
 		lvlslctobjects = GameObject.FindGameObjectsWithTag ("LevelScreen");
@@ -52,6 +58,8 @@ public class Menu_manager : MonoBehaviour {
     private void Start()
     {
         gm.savedPlayerLocation = Vector3.zero;
+        gm.scoreTotal = 0;
+        scoreText.text = "High Score: " + gm.highScore;
         skinSlct = gm.loadedSkin;
         skinTxt.text = gm.playerSkins[skinSlct].skinName;
     }
@@ -59,6 +67,7 @@ public class Menu_manager : MonoBehaviour {
     //Disables all UI objects but the one selected
     public void MenuObjectsOn()
 	{
+        aud.Play();
 		foreach (GameObject levelobject in lvlslctobjects) 
 		{
 			levelobject.SetActive (false);
@@ -90,7 +99,9 @@ public class Menu_manager : MonoBehaviour {
 	//Disables all UI objects but the one selected
 	public void OptionObjectsOn()
 	{
-		foreach (GameObject levelobject in lvlslctobjects) 
+        aud.Play();
+
+        foreach (GameObject levelobject in lvlslctobjects) 
 		{
 			levelobject.SetActive (false);
 		}
@@ -121,7 +132,9 @@ public class Menu_manager : MonoBehaviour {
 	//Disables all UI objects but the one selected
 	public void StartObjectsOn()
 	{
-		foreach (GameObject optionobject in optionobjects) 
+        aud.Play();
+
+        foreach (GameObject optionobject in optionobjects) 
 		{
 			optionobject.SetActive (false);
 		}
@@ -154,7 +167,9 @@ public class Menu_manager : MonoBehaviour {
 	//Disables all UI objects but the one selected
 	public void LevelObjectsOn()
 	{
-		foreach (GameObject optionobject in optionobjects) 
+        aud.Play();
+
+        foreach (GameObject optionobject in optionobjects) 
 		{
 			optionobject.SetActive (false);
 		}
@@ -185,7 +200,9 @@ public class Menu_manager : MonoBehaviour {
 	//Disables all UI objects but the one selected
 	public void CreditObjectsOn()
 	{
-		foreach (GameObject optionobject in optionobjects) 
+        aud.Play();
+
+        foreach (GameObject optionobject in optionobjects) 
 		{
 			optionobject.SetActive (false);
 		}
@@ -215,31 +232,41 @@ public class Menu_manager : MonoBehaviour {
 
 	public void StartLevelOne()
 	{
-		//Starts asynchronous loading of scene
-		StartCoroutine(LoadScene(levelOne));
+        aud.Play();
+
+        //Starts asynchronous loading of scene
+        StartCoroutine(LoadScene(levelOne));
 	}
 
 	public void StartLevelTwo()
 	{
-		//Starts asynchronous loading of scene
-		StartCoroutine(LoadScene(levelTwo));
+        aud.Play();
+
+        //Starts asynchronous loading of scene
+        StartCoroutine(LoadScene(levelTwo));
 	}
 
 	public void StartLevelThree()
 	{
-		//Starts asynchronous loading of scene
-		StartCoroutine(LoadScene(levelThree));
+        aud.Play();
+
+        //Starts asynchronous loading of scene
+        StartCoroutine(LoadScene(levelThree));
 	}
 
 	public void BonusStage()
 	{
-		//Starts asynchronous loading of scene
-		StartCoroutine(LoadScene("lvl_tutorial"));
+        aud.Play();
+
+        //Starts asynchronous loading of scene
+        StartCoroutine(LoadScene("lvl_tutorial"));
 	}
 
 	public void ExitGame()
 	{
-		Application.Quit();
+        aud.Play();
+
+        Application.Quit();
 	}
 
 	public IEnumerator LoadScene(string lvl)

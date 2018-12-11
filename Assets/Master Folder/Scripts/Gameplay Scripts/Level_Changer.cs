@@ -12,6 +12,8 @@ public class Level_Changer : MonoBehaviour {
 	{
 		if (other.tag == "Player") 
 		{
+            GetComponent<AudioSource>().Play();
+            Game_Manager.Instance.scoreTotal += GameObject.FindGameObjectWithTag("Player").GetComponent<Main_Player_Score_Manager>().score;
             Level_ui_manager.Current.VictoryScreenOn();
 		}
 	}

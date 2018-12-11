@@ -59,7 +59,7 @@ public class Menu_Camera_Control : MonoBehaviour {
 
 	void CameraMove (Vector3 firstIsland, Vector3 secondIsland)
 	{
-		tim += Time.deltaTime / lerpSpeed; 
+        tim += Time.deltaTime / lerpSpeed; 
 		if (centre.position != secondIsland) 
 		{
 			centre.position = Vector3.Lerp (firstIsland, secondIsland, tim);

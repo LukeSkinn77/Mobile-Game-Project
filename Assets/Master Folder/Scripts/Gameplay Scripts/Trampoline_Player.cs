@@ -12,6 +12,7 @@ public class Trampoline_Player : MonoBehaviour {
 		//Checks if it is the player, then adds force
 		if (other.tag == "Player") 
 		{
+            GetComponent<AudioSource>().Play();
 			var vel = other.gameObject.GetComponent<Rigidbody> ();
 			vel.velocity = new Vector3(vel.velocity.x, 0, vel.velocity.z);
 			vel.AddForce (new Vector3 (0, jumpForce, 0), ForceMode.Impulse);

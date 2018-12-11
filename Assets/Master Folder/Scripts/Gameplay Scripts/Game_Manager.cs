@@ -8,76 +8,97 @@ using UnityEngine.SceneManagement;
 
 public class Game_Manager : MonoBehaviour {
 
-	public static Game_Manager instance = null;
+    public static Game_Manager instance = null;
 
-	public float volume = 1.0f;
+    public float volume = 1.0f;
 
-	public int frameRate = 60;
+    public int frameRate = 60;
     public int loadedSkin;
 
-	public Vector3 savedPlayerLocation = Vector3.zero;
+    public int scoreTotal;
+    public int highScore;
+
+    public Vector3 savedPlayerLocation = Vector3.zero;
 
     public Player_Skins_Item currentSkin;
 
-	public List<bool> lvlCompletionList;
+    public List<bool> lvlCompletionList;
     public List<Player_Skins_Item> playerSkins;
 
-	public static Game_Manager Instance
-	{
-		get 
-		{
-			return instance;
-		}
-	}
-	//Classes created for saving data
-	[Serializable]
-	class OptionData
-	{
-		public float volume;
-		public int frameRate;
+    public static Game_Manager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+    //Classes created for saving data
+    [Serializable]
+    class OptionData
+    {
+        public float volume;
+        public int frameRate;
         public int skinSelect;
-	}
+    }
 
-	[Serializable]
-	class PlayerData
-	{
-		public string currentScene;
+    [Serializable]
+    class PlayerData
+    {
+        public string currentScene;
         public float xVal;
         public float yVal;
         public float zVal;
     }
 
     [Serializable]
-	class GameData
-	{
-		public List<bool> lvlCompletionList;
-	}
+    class GameData
+    {
+        //public List<bool> lvlCompletionList;
+        public int highScore;
+    }
 
-	void Awake() 
-	{
-		//Destroys duplicate Game Managers
-		if (instance) 
-		{
-			DestroyImmediate (gameObject);
-			return;
-		}
-		instance = this;
-		DontDestroyOnLoad (gameObject);
-		ProgressionInit ();
+    void Awake()
+    {
+        //Destroys duplicate Game Managers
+        if (instance)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+        ProgressionInit();
         currentSkin = playerSkins[0];
-		LoadProgress ();
-	}
+        LoadProgress();
+    }
 
-	void ProgressionInit()
-	{
-		lvlCompletionList = new List<bool> ();
-		for (int i = 0; i < 3; i++) 
-		{
-			lvlCompletionList.Add (false);
-		}
-	}
+    void ProgressionInit()
+    {
+        lvlCompletionList = new List<bool>();
+        for (int i = 0; i < 3; i++)
+        {
+            lvlCompletionList.Add(false);
+        }
+    }
 
-	public void SaveOptions()
+    public void ScoreReductor()
+    {
+        scoreTotal -= 150;
+        if (scoreTotal < 0)
+        {
+            scoreTotal = 0;
+        }
+    }
+
+    public void ScoreCheck()
+    {
+        if (scoreTotal > highScore)
+        {
+            SaveProgress();
+        }
+    }
+
+    public void SaveOptions()
 	{
 		//Creates or overwrites a save file based on the player's options
 		BinaryFormatter bf = new BinaryFormatter ();
@@ -154,8 +175,9 @@ public class Game_Manager : MonoBehaviour {
 		FileStream flie = File.Create (Application.persistentDataPath + "/GameProgressionFile.dat");
 		GameData data = new GameData ();
 
-		//Sets class variable to the manager variable
-		data.lvlCompletionList = lvlCompletionList;
+        //Sets class variable to the manager variable
+        //data.lvlCompletionList = lvlCompletionList;
+        data.highScore = scoreTotal;
 
 		bf.Serialize (flie, data);
 		flie.Close();
@@ -172,9 +194,9 @@ public class Game_Manager : MonoBehaviour {
 			GameData data = (GameData)bf.Deserialize (file);
 			file.Close ();
 
-			//Sets class variables to the manager variables
-			lvlCompletionList = data.lvlCompletionList;
-			//StartCoroutine (Menu_manager.current.LoadScene (data.currentScene));
+            //Sets class variables to the manager variables
+            //lvlCompletionList = data.lvlCompletionList;
+            highScore = data.highScore;
 		}
 	}
 }

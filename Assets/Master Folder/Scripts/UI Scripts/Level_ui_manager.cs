@@ -20,17 +20,21 @@ public class Level_ui_manager : MonoBehaviour {
 	Text healthTxt;
 	Text levelTxt;
 
+    Text finScoreTxt;
+
     Image imageBlack;
 
-//	public Text debugtxt1;
-//	public Text debugtxt2;
-//	public Text debugtxt3;
-//	public Main_Player_Control debugplayer;
+    AudioSource aud;
 
-	//float scoreSlidervalue = 0;
+    //	public Text debugtxt1;
+    //	public Text debugtxt2;
+    //	public Text debugtxt3;
+    //	public Main_Player_Control debugplayer;
 
-	// Use this for initialization
-	void Awake () 
+    //float scoreSlidervalue = 0;
+
+    // Use this for initialization
+    void Awake () 
 	{
 		Current = this;
 		Initiat ();
@@ -59,8 +63,12 @@ public class Level_ui_manager : MonoBehaviour {
 		powerupTxt = GameObject.Find ("Double Jump Text").GetComponent<Text> ();
 		healthTxt = GameObject.Find ("Health Text").GetComponent<Text> ();
 		levelTxt = GameObject.Find ("Player Level Text").GetComponent<Text> ();
-		powerupTxt.gameObject.SetActive (false);
+        finScoreTxt = GameObject.Find("Score Text").GetComponent<Text>();
+
+        powerupTxt.gameObject.SetActive (false);
 		powerupSlider.gameObject.SetActive (false);
+
+        aud = GetComponent<AudioSource>();
 
         StartCoroutine(ImageFadeOut(1f, imageBlack));
 		ScoreUpdate (0);
@@ -68,6 +76,8 @@ public class Level_ui_manager : MonoBehaviour {
 
 	public void MenuObjectsOn()
 	{
+        aud.Play();
+
         //Turns on pause gameobjects in list, while disabling any other list
         foreach (GameObject gmobject in gmObjects)
         {
@@ -90,6 +100,8 @@ public class Level_ui_manager : MonoBehaviour {
 
 	public void MenuObjectsOff()
 	{
+        aud.Play();
+
         //Turns off pause gameobjects in list, while disabling any other list
         foreach (GameObject gmobject in gmObjects)
         {
@@ -130,6 +142,8 @@ public class Level_ui_manager : MonoBehaviour {
             vicobject.SetActive(true);
         }
         Time.timeScale = 0.0f;
+        finScoreTxt.text = "Current Score: " + Game_Manager.Instance.scoreTotal;
+
     }
 
     public void GameOverScreenOn()
@@ -156,6 +170,8 @@ public class Level_ui_manager : MonoBehaviour {
 
     public void MenuLoad()
 	{
+        aud.Play();
+        Game_Manager.Instance.ScoreCheck();
 		//Starts load procedure
 		StartCoroutine(LoadScene ("lvl_mainmenu"));
 	}
@@ -178,6 +194,8 @@ public class Level_ui_manager : MonoBehaviour {
 
     public void NextLevel()
     {
+        aud.Play();
+        Game_Manager.Instance.ScoreCheck();
         string lvl = GameObject.Find("Victory Trigger").GetComponent<Level_Changer>().lvl;
         StartCoroutine(LoadScene(lvl));
     }
