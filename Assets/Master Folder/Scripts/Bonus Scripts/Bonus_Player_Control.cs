@@ -33,14 +33,11 @@ public class Bonus_Player_Control : MonoBehaviour {
 		{
 			drag = false;
 			starttouch = Input.mousePosition;
-			Debug.Log ("Starttouch.x = " + starttouch.x);
 		}
 
 		if (Input.GetMouseButton(0))
 		{
 			endtouch = Input.mousePosition;
-			Debug.Log ("Endtouch.x = " + endtouch.x);
-			Debug.Log ("Calculation is " + (Mathf.Abs (endtouch.x - starttouch.x) > movetol));
 			if (Mathf.Abs(endtouch.x - starttouch.x) > movetol)
 			{
 				drag = true;
@@ -56,7 +53,6 @@ public class Bonus_Player_Control : MonoBehaviour {
 				}
 			}
 		}
-
 		if (Input.GetMouseButtonUp(0))
 		{
 			if (!drag)

@@ -26,7 +26,6 @@ public class Main_Player_Camera_Control : MonoBehaviour {
 		//rb = GetComponent<Rigidbody> ();
 	}
 
-	// Update is called once per frame
 	void Update () 
 	{
 		//Continuously maintains a position equivalent to the offset distance
@@ -35,36 +34,25 @@ public class Main_Player_Camera_Control : MonoBehaviour {
 		{
 			Rotate ();
 		}
-
 	}
 	void Rotate()
 	{
-//		float angle = Mathf.Lerp(transform.rotation.eulerAngles.y, startYpoint + rotateDistance, Time.deltaTime * speed);
-//		Debug.Log (startYpoint + rotateDistance);
-//		Debug.Log ("Angle " + angle);
-//		transform.rotation = Quaternion.Euler(new Vector3 (transform.rotation.eulerAngles.x, angle, transform.rotation.eulerAngles.z));
 		rotateDistance = Mathf.Lerp(rotateDistance, 0, Time.deltaTime* speed);
-		//print (rotateDistance);
 		player.transform.RotateAround (player.transform.position, Vector3.up, rotateDistance);
 		if (Mathf.Abs (rotateDistance) < 0.01f) 
 		{
 			isRotating = false;
 		}
 		Vector3 eulers = new Vector3 (0, transform.eulerAngles.y, 0);
-		//player.transform.rotation = Quaternion.Euler (eulers);
 	}
 
 	public void RotateOverTime(float xval)
 	{
-		//startYpoint = transform.eulerAngles.y;
 		isRotating = true;
 		rotateDistance = xval;
 		endRotate = transform.rotation * Quaternion.AngleAxis (rotateDistance,this.transform.up);
 		endRotate.z = Quaternion.identity.z;
 		endRotate.x = Quaternion.identity.x;
-
-		Debug.Log (endRotate);
-
 	}
 
 	public void OldTurnRight()

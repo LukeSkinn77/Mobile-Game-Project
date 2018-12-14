@@ -120,7 +120,7 @@ public class Main_Player_Collision : MonoBehaviour {
         }
     }
 
-    void ScoreCheck()
+	public void ScoreCheck()
 	{
 		//Changes the player state and material based on their score amount
 		if (ph.score < miniScore) 

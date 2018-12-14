@@ -95,18 +95,15 @@ public class Main_Player_Control : MonoBehaviour {
 		if (Input.touchCount > 0)
 		{
 			Touch touch = Input.GetTouch(0);
-
 			switch (touch.phase)
 			{
 			case TouchPhase.Began:
 				starttouch = touch.position;
 				direcho = false;
 				break;
-
 			case TouchPhase.Moved:
 				endtouch = touch.position - starttouch;
 				break;
-
 			case TouchPhase.Ended:
                 //Checks Y and X values of endtouch to decide on action
 				if (endtouch.y >= 100) 
@@ -129,7 +126,6 @@ public class Main_Player_Control : MonoBehaviour {
 				{
 					TapAction ();
 				} 
-
 				direcho = true;
                 //Resets endtouch
 				endtouch = Vector2.zero;
@@ -166,7 +162,6 @@ public class Main_Player_Control : MonoBehaviour {
 		float xval = Input.acceleration.x;
 		transform.Translate (new Vector3(xval,0,0) * speed * Time.deltaTime, Space.Self);
 		model.transform.Rotate (new Vector3 (0, 0, xval * speed * Time.deltaTime));
-
 	}
 
 	void KeyBoardMovement()

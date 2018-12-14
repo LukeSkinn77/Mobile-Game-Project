@@ -47,7 +47,7 @@ public class Main_Player_Ground_Checker : MonoBehaviour {
 				GetComponentInParent<Main_Player_Control> ().goingForward = false;
 				GetComponentInParent<Main_Player_Control> ().goingBackward = false;
                 GetComponentInParent<Main_Player_Score_Manager>().PlayerScoreDamage(100);
-
+				GetComponentInParent<Main_Player_Collision> ().ScoreCheck ();
             }
 		}
 		else
