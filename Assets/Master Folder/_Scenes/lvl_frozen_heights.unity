@@ -4834,17 +4834,17 @@ Prefab:
     - target: {fileID: 224888999745214770, guid: e8ae1e347a1e3b34d90c4906f918023d,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224888999745214770, guid: e8ae1e347a1e3b34d90c4906f918023d,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224034362314558316, guid: e8ae1e347a1e3b34d90c4906f918023d,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8ae1e347a1e3b34d90c4906f918023d, type: 2}
@@ -9269,6 +9269,11 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: af935c3ffc6e53040a3b9ac989878f94, type: 3}
+    - target: {fileID: 114808579999027722, guid: dbe60d49ad6704143aae427e6c2035e1,
+        type: 2}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 933145589}
     m_RemovedComponents:
     - {fileID: 33914734555109810, guid: dbe60d49ad6704143aae427e6c2035e1, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: dbe60d49ad6704143aae427e6c2035e1, type: 2}
@@ -10527,6 +10532,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.046741456, y: 0.084778786, z: 0.040355228}
   m_Center: {x: -0.00047382485, y: -0.00024124935, z: 0.00064283476}
+--- !u!54 &933145589 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 54576859024545122, guid: dbe60d49ad6704143aae427e6c2035e1,
+    type: 2}
+  m_PrefabInternal: {fileID: 811192889}
 --- !u!1 &938645841
 GameObject:
   m_ObjectHideFlags: 0

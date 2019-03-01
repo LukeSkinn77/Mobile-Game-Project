@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PS4;
+
 
 public class Main_Player_Control : MonoBehaviour {
 
@@ -46,7 +48,6 @@ public class Main_Player_Control : MonoBehaviour {
 
     private void Awake()
     {
-        PlayerTexture();
         audi = GetComponent<AudioSource>();
         LevelOneModifier();
     }
@@ -54,13 +55,16 @@ public class Main_Player_Control : MonoBehaviour {
     // Use this for initialization
     void Start () 
 	{
+        PlayerTexture();
         PlayerPosition();
 		//initialDirection = Input.acceleration; //new Vector3 (Input.acceleration.x, 0.0f, Input.acceleration.z);
 		Game_Manager.Instance.savedPlayerLocation = transform.position;
 		Game_Manager.Instance.SavePlayer ();
-		//Gets components
-		rb = GetComponent<Rigidbody> ();
+		
+        //Gets components
+		rb = GetComponent<Rigidbody>();
 		ph = GetComponent<Main_Player_Score_Manager> ();
+        PS4Input.PadResetOrientation(0);
 
 	}
 
@@ -86,110 +90,123 @@ public class Main_Player_Control : MonoBehaviour {
 	{
         if (Time.timeScale > 0.0f)
         {
-            TouchControls();
+            PlayerControllerMovement();
         }
 	}
 		
-	void TouchControls()
-	{
-		if (Input.touchCount > 0)
-		{
-			Touch touch = Input.GetTouch(0);
-			switch (touch.phase)
-			{
-			case TouchPhase.Began:
-				starttouch = touch.position;
-				direcho = false;
-				break;
-			case TouchPhase.Moved:
-				endtouch = touch.position - starttouch;
-				break;
-			case TouchPhase.Ended:
-                //Checks Y and X values of endtouch to decide on action
-				if (endtouch.y >= 100) 
-				{
-					goingForward = true;
-					goingBackward = false;
-				} 
-				else if (endtouch.y <= -100) 
-				{
-					goingBackward = true;
-					goingForward = false;
-				}
+	//void TouchControls()
+	//{
+		//if (Input.touchCount > 0)
+		//{
+		//	Touch touch = Input.GetTouch(0);
+		//	switch (touch.phase)
+		//	{
+		//	case TouchPhase.Began:
+		//		starttouch = touch.position;
+		//		direcho = false;
+		//		break;
+		//	case TouchPhase.Moved:
+		//		endtouch = touch.position - starttouch;
+		//		break;
+		//	case TouchPhase.Ended:
+  //              //Checks Y and X values of endtouch to decide on action
+		//		if (endtouch.y >= 100) 
+		//		{
+		//			goingForward = true;
+		//			goingBackward = false;
+		//		} 
+		//		else if (endtouch.y <= -100) 
+		//		{
+		//			goingBackward = true;
+		//			goingForward = false;
+		//		}
 
-                if ((endtouch.x >= 50) || (endtouch.x <= -50))
-                {
-                    cam.RotateOverTime(endtouch.x / 20);
-                }
-                //If little to no movement, jump
-                if ((endtouch.x <= 50) && (endtouch.x >= -50) && (endtouch.y <= 100) && (endtouch.y >= -100)) 
-				{
-					TapAction ();
-				} 
-				direcho = true;
-                //Resets endtouch
-				endtouch = Vector2.zero;
-				break;
-			}
-		}	
-	}
+  //              if ((endtouch.x >= 50) || (endtouch.x <= -50))
+  //              {
+  //                  cam.RotateOverTime(endtouch.x / 20);
+  //              }
+  //              //If little to no movement, jump
+  //              if ((endtouch.x <= 50) && (endtouch.x >= -50) && (endtouch.y <= 100) && (endtouch.y >= -100)) 
+		//		{
+		//			TapAction ();
+		//		} 
+		//		direcho = true;
+  //              //Resets endtouch
+		//		endtouch = Vector2.zero;
+		//		break;
+		//	}
+		//}	
+	//}
 
 
 	void FixedUpdate()
 	{
 		PlayerXMovement ();
 		PlayerZMovement ();
-		KeyBoardMovement ();
 		GlideCheck ();
 	}
 
 	void PlayerZMovement()
 	{
-		if (goingForward) 
+        // declare a z value holder
+        float zval;
+
+        // move the player up and down using the left thumbstick
+        // up is positive, down is negative...
+
+        if (PS4Input.PadIsConnected(0)) 
 		{
-			transform.Translate (new Vector3 (0, 0, 1 * speed * Time.deltaTime));
-			model.transform.Rotate (new Vector3 (4, 0, 0 * speed * Time.deltaTime));
-		}
-		if (goingBackward) 
-		{
-			transform.Translate (new Vector3 (0, 0, -1 * speed * Time.deltaTime));
-			model.transform.Rotate (new Vector3 (-4, 0, 0 * speed * Time.deltaTime));
+            zval = Input.GetAxis("LeftVertical"); 
+            float newVal = Mathf.Clamp(zval, -1, 1);
+            transform.Translate (new Vector3 (0, 0, zval * speed * Time.deltaTime));
+			model.transform.Rotate (new Vector3 (zval, 0, 0 * speed * Time.deltaTime));
 		}
 	}
 
 	void PlayerXMovement()
 	{
-		float xval = Input.acceleration.x;
-		transform.Translate (new Vector3(xval,0,0) * speed * Time.deltaTime, Space.Self);
-		model.transform.Rotate (new Vector3 (0, 0, xval * speed * Time.deltaTime));
+        // check if pad is connected
+        // move the player with the sixaxis
+
+        if (PS4Input.PadIsConnected(0))
+        {
+            Debug.Log("Controller connected");
+            Vector4 controllerPos = PS4Input.PadGetLastOrientation(0);
+            float xval = Mathf.Clamp(controllerPos.x * 2, -1, 1);
+            transform.Translate(new Vector3(xval, 0, 0) * speed * Time.deltaTime, Space.Self);
+            model.transform.Rotate(new Vector3(0, 0, xval * speed * Time.deltaTime));
+        }
+		//float xval = Input.acceleration.x;
 	}
 
-	void KeyBoardMovement()
+	void PlayerControllerMovement()
 	{
-		//Debug Keyboard Commands REMOVE WHEN FINAL BUILD
-		if (Input.GetKey (KeyCode.A)) 
-		{
-			transform.Translate (new Vector3(-10,0,0) * Time.deltaTime, Space.Self);
-		}
-		if (Input.GetKey (KeyCode.D)) 
-		{
-			transform.Translate (new Vector3(10,0,0) * Time.deltaTime, Space.Self);
-		}
-		if (Input.GetKey (KeyCode.W)) 
-		{
-			transform.Translate (new Vector3(0,0,10) * Time.deltaTime, Space.Self);
-		}
-		if (Input.GetKey (KeyCode.S)) 
-		{
-			transform.Translate (new Vector3(0,0,-10) * Time.deltaTime, Space.Self);
-		}
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
-            TapAction();
+            PlayerJumpAction();
         }
-	}
+
+        //Debug Keyboard Commands REMOVE WHEN FINAL BUILD
+        //if (Input.GetKey(KeyCode.A))
+        //{
+        //    transform.Translate(new Vector3(-10, 0, 0) * Time.deltaTime, Space.Self);
+        //}
+        //if (Input.GetKey(KeyCode.D))
+        //{
+        //    transform.Translate(new Vector3(10, 0, 0) * Time.deltaTime, Space.Self);
+        //}
+        //if (Input.GetKey(KeyCode.W))
+        //{
+        //    transform.Translate(new Vector3(0, 0, 10) * Time.deltaTime, Space.Self);
+        //}
+        //if (Input.GetKey(KeyCode.S))
+        //{
+        //    transform.Translate(new Vector3(0, 0, -10) * Time.deltaTime, Space.Self);
+        //}
+
+    }
 		
-	void TapAction()
+	void PlayerJumpAction()
 	{
 		//Check Player powerup state to decide behaviour
 		switch (playerpowerupstate) 
