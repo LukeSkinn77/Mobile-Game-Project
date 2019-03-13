@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Master Folder/_Scenes/lvl_mainmenu.unity
     guid: dec5f85c4b9f4354299915ea62399584
-  - enabled: 0
+  - enabled: 1
     path: Assets/Master Folder/_Scenes/lvl_tutorial.unity
     guid: 34befcbf9753e3e418101ba6f54c0d10
-  - enabled: 0
+  - enabled: 1
     path: Assets/Master Folder/_Scenes/lvl_floating_islands.unity
     guid: 38b587b5e4aaaad4da0c788b1f44a61a
   - enabled: 1

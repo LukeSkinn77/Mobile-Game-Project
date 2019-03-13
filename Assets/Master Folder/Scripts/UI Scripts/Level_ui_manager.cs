@@ -41,14 +41,19 @@ public class Level_ui_manager : MonoBehaviour {
 		MenuObjectsOff ();
 	}
 
-//	void Update()
-//	{
-//		debugtxt1.text = "init " + debugplayer.initialDirection;
-//		debugtxt2.text = "acc " + Input.acceleration;
-//		debugtxt3.text = "result " + debugplayer.direction;
-//	}
-		
-	void Initiat()
+    //	void Update()
+    //	{
+    //		debugtxt1.text = "init " + debugplayer.initialDirection;
+    //		debugtxt2.text = "acc " + Input.acceleration;
+    //		debugtxt3.text = "result " + debugplayer.direction;
+    //	}
+
+    private void Update()
+    {
+        PlayerMenu();
+    }
+
+    void Initiat()
 	{
 		//Fills lists with gameobjects withs said tags, finds gameobject references
 		//And updates the score
@@ -73,6 +78,14 @@ public class Level_ui_manager : MonoBehaviour {
         StartCoroutine(ImageFadeOut(1f, imageBlack));
 		ScoreUpdate (0);
 	}
+
+    void PlayerMenu()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            MenuObjectsOn();
+        }
+    }
 
 	public void MenuObjectsOn()
 	{

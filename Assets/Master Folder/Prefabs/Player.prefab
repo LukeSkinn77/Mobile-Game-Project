@@ -419,7 +419,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ca6d7184d4107b442bfdeed5586e5d5b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c6b6f7b03ebefb14593f8895b75e7e24, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -544,7 +544,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1647733889928524}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e2a05190cabbf541afae85d15b42c3a, type: 3}
   m_Name: 
@@ -595,6 +595,8 @@ MonoBehaviour:
   audioJump: {fileID: 8300000, guid: 388f7367dd67fd34c94d91110e8982b2, type: 3}
   audioFloat: {fileID: 8300000, guid: d4dccccc4744d1647a218b0826ab746b, type: 3}
   audioLevel: {fileID: 8300000, guid: 8f6f80bd94963c546a36d1572fe1683d, type: 3}
+  normalColour: {r: 0, g: 0.21875858, b: 1, a: 0}
+  doubleJumpColour: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 0}
 --- !u!114 &114834052830550286
 MonoBehaviour:
   m_ObjectHideFlags: 1

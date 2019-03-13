@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PS4;
 
 public class Main_Player_Collision : MonoBehaviour {
 	
@@ -169,8 +170,9 @@ public class Main_Player_Collision : MonoBehaviour {
 
 	IEnumerator DamageColourTrigger()
 	{
-		//Rapidly changes the colour to red and back
-		for (int i = 0; i < 10; i++) 
+        PS4Input.PadSetVibration(0, 2, 2);
+        //Rapidly changes the colour to red and back
+        for (int i = 0; i < 10; i++) 
 		{
 			rend.material.color = damageColour;
 			yield return new WaitForSeconds (0.05f);
@@ -178,5 +180,6 @@ public class Main_Player_Collision : MonoBehaviour {
 			yield return new WaitForSeconds (0.05f);
 		}
         isDamaged = false;
+        PS4Input.PadSetVibration(0, 0, 0);
     }
 }

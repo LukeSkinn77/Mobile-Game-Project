@@ -46,6 +46,9 @@ public class Main_Player_Control : MonoBehaviour {
     public AudioClip audioFloat;
     public AudioClip audioLevel;
 
+    public Color normalColour;
+    public Color doubleJumpColour;
+
     private void Awake()
     {
         audi = GetComponent<AudioSource>();
@@ -66,7 +69,7 @@ public class Main_Player_Control : MonoBehaviour {
 		ph = GetComponent<Main_Player_Score_Manager> ();
         PS4Input.PadResetOrientation(0);
 
-	}
+    }
 
     void PlayerTexture()
     {
@@ -91,6 +94,7 @@ public class Main_Player_Control : MonoBehaviour {
         if (Time.timeScale > 0.0f)
         {
             PlayerControllerMovement();
+            CameraControl();
         }
 	}
 		
@@ -153,17 +157,24 @@ public class Main_Player_Control : MonoBehaviour {
 
         // move the player up and down using the left thumbstick
         // up is positive, down is negative...
-
-        if (PS4Input.PadIsConnected(0)) 
-		{
-            zval = Input.GetAxis("LeftVertical"); 
+#if UNITY_PS4
+        if (PS4Input.PadIsConnected(0))
+        {
+            zval = Input.GetAxis("LeftVertical");
             float newVal = Mathf.Clamp(zval, -1, 1);
-            transform.Translate (new Vector3 (0, 0, zval * speed * Time.deltaTime));
-			model.transform.Rotate (new Vector3 (zval, 0, 0 * speed * Time.deltaTime));
-		}
-	}
+            transform.Translate(new Vector3(0, 0, zval * speed * Time.deltaTime));
+            model.transform.Rotate(new Vector3(zval, 0, 0 * speed * Time.deltaTime));
+        }
+#endif
+//#if UNITY_EDITOR
+//        zval = Input.GetAxis("Vertical");
+//        float nextVal = Mathf.Clamp(zval, -1, 1);
+//        transform.Translate(new Vector3(0, 0, zval * speed * Time.deltaTime));
+//        model.transform.Rotate(new Vector3(zval, 0, 0 * speed * Time.deltaTime));
+//#endif
+    }
 
-	void PlayerXMovement()
+    void PlayerXMovement()
 	{
         // check if pad is connected
         // move the player with the sixaxis
@@ -176,12 +187,16 @@ public class Main_Player_Control : MonoBehaviour {
             transform.Translate(new Vector3(xval, 0, 0) * speed * Time.deltaTime, Space.Self);
             model.transform.Rotate(new Vector3(0, 0, xval * speed * Time.deltaTime));
         }
-		//float xval = Input.acceleration.x;
-	}
+        else
+        {
+            Debug.Log("Controller not connected");
+        }
+        //float xval = Input.acceleration.x;
+    }
 
 	void PlayerControllerMovement()
 	{
-        if (Input.GetKeyDown(KeyCode.Joystick1Button3))
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
             PlayerJumpAction();
         }
@@ -270,7 +285,14 @@ public class Main_Player_Control : MonoBehaviour {
 		}
 	}
 
-	void GlideCheck()
+    IEnumerator LightChanger()
+    {
+        PS4Input.PadSetLightBar(0, (int)doubleJumpColour.r, (int)doubleJumpColour.g, (int)doubleJumpColour.b);
+        yield return new WaitForSeconds(0.5f);
+        PS4Input.PadSetLightBar(0, (int)normalColour.r, (int)normalColour.g, (int)normalColour.b);
+    }
+
+    void GlideCheck()
 	{
 		//Checks that the player is gliding, then adds a force upwards
 		if (pgc.glideJump) 
@@ -309,7 +331,23 @@ public class Main_Player_Control : MonoBehaviour {
 		jumpforce = 1.0f;
 	}
 
-	void OldDraggedRight()
+    void CameraControl ()
+    {
+        float camValue;
+#if UNITY_PS4
+        camValue = Input.GetAxis("RightHorizontal") * speed;
+        transform.Rotate(0, camValue, 0);
+#endif
+#if UNITY_EDITOR
+        camValue = Input.GetAxis("Mouse X") * speed;
+        transform.Rotate(0, camValue, 0);
+#endif
+
+    }
+
+
+
+    void OldDraggedRight()
 	{
 		//Turns camera right
 		cam.OldTurnRight ();
