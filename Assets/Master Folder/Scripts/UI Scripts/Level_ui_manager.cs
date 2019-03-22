@@ -1,8 +1,10 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.PS4;
 
 public class Level_ui_manager : MonoBehaviour {
 
@@ -81,7 +83,8 @@ public class Level_ui_manager : MonoBehaviour {
 
     void PlayerMenu()
     {
-        if (Input.GetButtonDown("Cancel"))
+        KeyCode codeOption = (KeyCode) Enum.Parse(typeof(KeyCode),"Joystick1Button7",true);
+        if(Input.GetKey(codeOption))
         {
             MenuObjectsOn();
         }

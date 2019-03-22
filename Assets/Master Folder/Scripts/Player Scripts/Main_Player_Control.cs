@@ -52,6 +52,8 @@ public class Main_Player_Control : MonoBehaviour {
     private void Awake()
     {
         audi = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody>();
+        ph = GetComponent<Main_Player_Score_Manager>();
         LevelOneModifier();
     }
 
@@ -65,8 +67,7 @@ public class Main_Player_Control : MonoBehaviour {
 		Game_Manager.Instance.SavePlayer ();
 		
         //Gets components
-		rb = GetComponent<Rigidbody>();
-		ph = GetComponent<Main_Player_Score_Manager> ();
+
         PS4Input.PadResetOrientation(0);
 
     }
@@ -234,6 +235,7 @@ public class Main_Player_Control : MonoBehaviour {
 			} 
 			if (!pgc.ground && !pgc.doubleJump) 
 			{
+                StartCoroutine(LightChanger());
 				audi.clip = audioJump;
 				audi.Play ();
 				rb.velocity = new Vector3 (rb.velocity.x, 0, rb.velocity.z);
@@ -288,7 +290,7 @@ public class Main_Player_Control : MonoBehaviour {
     IEnumerator LightChanger()
     {
         PS4Input.PadSetLightBar(0, (int)doubleJumpColour.r, (int)doubleJumpColour.g, (int)doubleJumpColour.b);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         PS4Input.PadSetLightBar(0, (int)normalColour.r, (int)normalColour.g, (int)normalColour.b);
     }
 
