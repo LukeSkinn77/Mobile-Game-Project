@@ -37,7 +37,7 @@ public class Menu_manager : MonoBehaviour {
 	{
 		Current = this;
 		gm = GameObject.Find ("Game Manager").GetComponent<Game_Manager> ();
-		gm.LoadOptions ();
+		//gm.LoadOptions ();
 
         aud = GetComponent<AudioSource>();
 
@@ -295,13 +295,13 @@ public class Menu_manager : MonoBehaviour {
 	public void OptionSaveTrigger()
 	{
 		//Saves option data
-		gm.SaveOptions ();
+		//gm.SaveOptions ();
 	}
 
 	public void Continue()
 	{
 		//Loads player level data
-		gm.LoadPlayer ();
+		//gm.LoadPlayer ();
 	}
 
 	public void FrameRateSwitcher()

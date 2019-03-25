@@ -170,7 +170,7 @@ public class Main_Player_Collision : MonoBehaviour {
 
 	IEnumerator DamageColourTrigger()
 	{
-        PS4Input.PadSetVibration(0, 2, 2);
+        PS4Input.PadSetVibration(0, 3, 3);
         //Rapidly changes the colour to red and back
         for (int i = 0; i < 10; i++) 
 		{

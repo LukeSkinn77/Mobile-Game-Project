@@ -14,6 +14,7 @@ public class Main_Player_Control : MonoBehaviour {
 	public int playerpowerupstate_temp = 0;
 
 	public float speed = 8.0f;
+    public float camSpeed = 4.0f;
 	public float timernum = 0.1f;
 	public float jumpforce = 7.0f;
 
@@ -46,15 +47,15 @@ public class Main_Player_Control : MonoBehaviour {
     public AudioClip audioFloat;
     public AudioClip audioLevel;
 
-    public Color normalColour;
-    public Color doubleJumpColour;
+    public Color32 normalColour;
+    public Color32 doubleJumpColour;
+    public Color32 glideColour;
 
     private void Awake()
     {
         audi = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         ph = GetComponent<Main_Player_Score_Manager>();
-        LevelOneModifier();
     }
 
     // Use this for initialization
@@ -62,9 +63,10 @@ public class Main_Player_Control : MonoBehaviour {
 	{
         PlayerTexture();
         PlayerPosition();
-		//initialDirection = Input.acceleration; //new Vector3 (Input.acceleration.x, 0.0f, Input.acceleration.z);
-		Game_Manager.Instance.savedPlayerLocation = transform.position;
-		Game_Manager.Instance.SavePlayer ();
+        LevelOneModifier();
+        //initialDirection = Input.acceleration; //new Vector3 (Input.acceleration.x, 0.0f, Input.acceleration.z);
+        //Game_Manager.Instance.savedPlayerLocation = transform.position;
+		//Game_Manager.Instance.SavePlayer ();
 		
         //Gets components
 
@@ -184,7 +186,7 @@ public class Main_Player_Control : MonoBehaviour {
         {
             Debug.Log("Controller connected");
             Vector4 controllerPos = PS4Input.PadGetLastOrientation(0);
-            float xval = Mathf.Clamp(controllerPos.x * 2, -1, 1);
+            float xval = Mathf.Clamp(-controllerPos.z * 2, -1, 1);
             transform.Translate(new Vector3(xval, 0, 0) * speed * Time.deltaTime, Space.Self);
             model.transform.Rotate(new Vector3(0, 0, xval * speed * Time.deltaTime));
         }
@@ -235,7 +237,7 @@ public class Main_Player_Control : MonoBehaviour {
 			} 
 			if (!pgc.ground && !pgc.doubleJump) 
 			{
-                StartCoroutine(LightChanger());
+                StartCoroutine(LightChanger(doubleJumpColour));
 				audi.clip = audioJump;
 				audi.Play ();
 				rb.velocity = new Vector3 (rb.velocity.x, 0, rb.velocity.z);
@@ -263,6 +265,7 @@ public class Main_Player_Control : MonoBehaviour {
 			} 
 			if (!pgc.ground && !pgc.glideJump) 
 			{
+                StartCoroutine(LightChanger(glideColour));
                 audi.clip = audioFloat;
                 audi.Play();
                 rb.velocity = new Vector3 (rb.velocity.x, 0, rb.velocity.z);
@@ -287,11 +290,11 @@ public class Main_Player_Control : MonoBehaviour {
 		}
 	}
 
-    IEnumerator LightChanger()
+    IEnumerator LightChanger(Color32 inputColour)
     {
-        PS4Input.PadSetLightBar(0, (int)doubleJumpColour.r, (int)doubleJumpColour.g, (int)doubleJumpColour.b);
+        PS4Input.PadSetLightBar(0, inputColour.r, inputColour.g, inputColour.b);
         yield return new WaitForSeconds(1.5f);
-        PS4Input.PadSetLightBar(0, (int)normalColour.r, (int)normalColour.g, (int)normalColour.b);
+        PS4Input.PadSetLightBar(0, normalColour.r, normalColour.g, normalColour.b);
     }
 
     void GlideCheck()
@@ -337,11 +340,11 @@ public class Main_Player_Control : MonoBehaviour {
     {
         float camValue;
 #if UNITY_PS4
-        camValue = Input.GetAxis("RightHorizontal") * speed;
+        camValue = Input.GetAxis("RightHorizontal") * camSpeed;
         transform.Rotate(0, camValue, 0);
 #endif
 #if UNITY_EDITOR
-        camValue = Input.GetAxis("Mouse X") * speed;
+        camValue = Input.GetAxis("Mouse X") * camSpeed;
         transform.Rotate(0, camValue, 0);
 #endif
 

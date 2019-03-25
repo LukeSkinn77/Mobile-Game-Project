@@ -117,7 +117,7 @@ public class Level_ui_manager : MonoBehaviour {
 	public void MenuObjectsOff()
 	{
         aud.Play();
-
+        PS4Input.PadResetOrientation(0);
         //Turns off pause gameobjects in list, while disabling any other list
         foreach (GameObject gmobject in gmObjects)
         {

@@ -22,16 +22,16 @@ public class Tutorial_UI : MonoBehaviour {
             {
                 //Set the text depending on the tutorial ID
                 case 0:
-                    textTutorial.text = "Swipe up and down to move forwards and backwards";
+                    textTutorial.text = "Move the left stick up and down to move forwards and backwards";
                     break;
                 case 1:
-                    textTutorial.text = "Tap to jump";
+                    textTutorial.text = "Press X to jump";
                     break;
                 case 2:
-                    textTutorial.text = "Swipe left and right to rotate the camera";
+                    textTutorial.text = "Move the right stick left and right to rotate the camera";
                     break;
                 case 3:
-                    textTutorial.text = "Tap after jumping to use a power up when collected";
+                    textTutorial.text = "Press X after jumping to use a power up when collected";
                     break;
                 case 4:
                     textTutorial.text = "Use checkpoints to restart after falling down";

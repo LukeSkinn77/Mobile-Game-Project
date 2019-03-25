@@ -152,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1861513632318316}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4417221907880204}
@@ -419,7 +419,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c6b6f7b03ebefb14593f8895b75e7e24, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f1294260c1369f34bbf139a68881fffa, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -579,6 +579,7 @@ MonoBehaviour:
   playerpowerupstate: 0
   playerpowerupstate_temp: 0
   speed: 9
+  camSpeed: 4
   timernum: 0.1
   jumpforce: 0.8
   goingForward: 0
@@ -595,8 +596,15 @@ MonoBehaviour:
   audioJump: {fileID: 8300000, guid: 388f7367dd67fd34c94d91110e8982b2, type: 3}
   audioFloat: {fileID: 8300000, guid: d4dccccc4744d1647a218b0826ab746b, type: 3}
   audioLevel: {fileID: 8300000, guid: 8f6f80bd94963c546a36d1572fe1683d, type: 3}
-  normalColour: {r: 0, g: 0.21875858, b: 1, a: 0}
-  doubleJumpColour: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 0}
+  normalColour:
+    serializedVersion: 2
+    rgba: 4294919473
+  doubleJumpColour:
+    serializedVersion: 2
+    rgba: 4293322488
+  glideColour:
+    serializedVersion: 2
+    rgba: 4279566080
 --- !u!114 &114834052830550286
 MonoBehaviour:
   m_ObjectHideFlags: 1
